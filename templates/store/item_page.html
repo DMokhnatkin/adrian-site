@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+    {{ item.name }}
+{% endblock %}
+
+{% block header %}
+    {% include 'logo.html' %}
+    {% include 'menus/menu_navigation.html' %}
+    <div id="main_contacts">
+        <span>г. Пермь</span><br>
+        {% load user_profile_tags %}
+        {% show_main_contacts %}
+    </div>
+{% endblock %}
+
+{% block sidebar_left %}
+    <div class="item">
+        {% include 'menus/menu_catalog.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div id="breadcrumbs" style="margin-top: 10px; ">
+        <a href="{% url 'items_in_category' item.category.id %}"> {{ item.category.name }} </a> >> {{ item.name }}
+    </div>
+    <div style="text-align: left; margin-bottom: 20px;">
+        <h1 class="underlined_bottom" style="display: inline-block; margin-left: 0; padding-left: 10px; ">{{ item.name }}</h1>
+    </div>
+    <div id = "item" style="margin: 10px; ">
+        {% load thumbnail %}
+        <div id="item_image">
+            <img src="{{ item.main_image.image|thumbnail_url:'item_page' }}" alt="" />
+        </div>
+        <div id="item_description">
+            <span class="normal">{{ item.description }}</span>
+        </div>
+        <div id="characteristics">
+            <!-- We will render two same tables to fix first column -->
+            <table class="first">
+                <thead>
+                    <tr class="header">
+                        <td class="first header"></td>
+                        {% for value in characteristic_table_data.modification_names %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, values in characteristic_table_data.characteristics.items %}
+                        <tr>
+                            <td class="first">{{ key }}</td>
+                            {% for val in values %}
+                                <td>{{ val }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="scrolled">
+                <table class="second">
+                <thead>
+                    <tr>
+                        <td class="first"></td>
+                        {% for value in characteristic_table_data.modification_names %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, values in characteristic_table_data.characteristics.items %}
+                        <tr>
+                            <td class="first">{{ key }}</td>
+                            {% for val in values %}
+                                <td>{{ val }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

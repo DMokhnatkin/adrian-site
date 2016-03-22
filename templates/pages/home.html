@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	Главная
+{% endblock %}
+
+{% block header %}
+    {% include 'logo.html' %}
+    {% include 'menus/menu_navigation.html' %}
+    <div id="main_contacts">
+        <span>г. Пермь</span><br>
+        {% load user_profile_tags %}
+        {% show_main_contacts %}
+    </div>
+{% endblock %}
+
+{% block sidebar_left %}
+    <div class="item">
+        {% include 'menus/menu_catalog.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% load slideshows_tags %}
+    <div class="padding_20 margin_10 color3_background dark_border" style="display: inline-block; ">
+        {% render_slideshow 'main' %}
+    </div>
+{% endblock %}

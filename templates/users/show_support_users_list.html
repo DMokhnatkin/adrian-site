@@ -1,0 +1,24 @@
+{% comment %}
+    managers - array of managar.models.Manager objects
+{% endcomment %}
+
+<div id="managers_table">
+    {% for manager in managers %}
+        <div class="prev_manager">
+            <div>
+                {% load thumbnail %}
+                <img class="inline" src="{{ manager.avatar|thumbnail_url:'avatar' }}" />
+                <div class="inline">
+                    <span>
+                        <h5>{{ manager.first_name }}{{ manager.last_name }}</h5>
+                    </span>
+                    {% for phone_number in manager.managerphonenumber_set.all %}
+                        <p>
+                            {{ phone_number.val }}
+                        </p>
+                    {% endfor  %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

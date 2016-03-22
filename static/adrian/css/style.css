@@ -1,0 +1,389 @@
+@import "indents.css";
+@import "borders.css";
+@import "colors.css";
+
+.inline
+{
+    float: left;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Century Gothic', futura, 'URW Gothic L', Verdana, sans-serif;
+    text-decoration: none;
+}
+
+body
+{
+    background-color: #f7f0d4;
+}
+
+#wrapper
+{
+    min-width: 1024px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+#header
+{
+    position: relative;
+    background-color: #f7f0d4;
+}
+
+#sidebar_left
+{
+    width: 300px;
+    float: left;
+}
+
+#sidebar_left div.item
+{
+    border-left: 1px solid #c2c4bf;
+    border-bottom: 1px solid #c2c4bf;
+    border-top: 1px solid #c2c4bf;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#content
+{
+    margin-left: 300px;
+    border-top: 1px solid #85806d;
+    border-right: 1px solid #c2c4bf;
+    border-bottom: 1px solid #c2c4bf;
+    border-left: 1px solid #c2c4bf;
+    background-color: white;
+}
+
+#content h1
+{
+    margin-left: 10px;
+    text-align: left;
+    font-size: 30px;
+}
+
+#content_body
+{
+    margin-top: 10px;
+    text-align: center;
+}
+
+#header img.logo
+{
+    margin: 5px;
+}
+
+div.title
+{
+    display: inline-block;
+}
+
+/* Breadcrumbs */
+#breadcrumbs
+{
+    text-align: center;
+    color: #bbbbbb;
+    font-size: 20px;
+}
+
+#breadcrumbs a
+{
+    text-decoration: none;
+    color: #bbbbbb;
+}
+
+/*----------*/
+
+/* Main contacts */
+#main_contacts
+{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    text-align: right;
+}
+/*-------------*/
+
+/* Items in category */
+div.item_in_catalog
+{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #f1f1f1;
+    margin: 0 5px;
+    position: relative;
+}
+
+#items_in_catalog_table
+{
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+div.item_in_catalog h3
+{
+    text-align: center;
+    background-color: #f1f1f1;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 25px;
+    line-height: 50px;
+}
+
+div.item_in_catalog:hover h3
+{
+    background-color: #A18E45;
+    color: white;
+}
+
+a.item_in_catalog
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+/*--------------------------*/
+
+/* Item page */
+#content_title
+{
+    text-align: center;
+    margin: 5px 0;
+}
+
+#item_image
+{
+    float: left;
+    width: 300px;
+}
+
+#item_description
+{
+    overflow: hidden;
+    vertical-align: top;
+    border-left: 1px solid #888;
+    padding: 4px;
+}
+
+#characteristics
+{
+    padding-top: 20px;
+    clear: both;
+    position: relative;
+    overflow: hidden;
+}
+
+#characteristics div.scrolled
+{
+    overflow: auto;
+}
+
+#characteristics table
+{
+    border-collapse: collapse;
+    line-height: 1.5em;
+}
+
+#characteristics table.first
+{
+    position: absolute;
+    top: 20px;
+    z-index: 1;
+}
+
+#characteristics table.first td
+{
+    visibility: hidden;
+    border: none;
+}
+
+#characteristics table.first td.first
+{
+    visibility: visible;
+    background: white;
+    border: 1px solid #e4e4e4;
+}
+
+#characteristics table.first td.first.header
+{
+    background-color: #f8f8f8
+}
+
+#characteristics table.second td.first
+{
+    visibility: hidden;
+}
+
+#characteristics thead
+{
+    color: #888;
+    background-color: #f8f8f8;
+    border: 1px solid #e4e4e4;
+}
+
+#characteristics td
+{
+    padding: 0 10px;
+    text-align: center;
+}
+
+#characteristics tbody tr:hover
+{
+    background-color: #eee;
+}
+
+#characteristics tbody td
+{
+    border: 1px solid #e4e4e4;
+    font-size: 14px;
+}
+/* ----------*/
+
+/* Text */
+.normal
+{
+    font-size: 13pt;
+}
+.large
+{
+    font-size: 20px;
+}
+/* ---- */
+
+/* Menu catalog */
+#menu_catalog
+{
+    color: black;
+}
+
+#menu_catalog h3
+{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#menu_catalog a, #menu_catalog a:visited
+{
+    color: black;
+}
+
+#menu_catalog a:hover
+{
+    color: #A18E45;
+}
+
+#menu_catalog li:before
+{
+    content: "-";
+}
+/* ------- */
+
+/* Menu navigation */
+#menu_navigation
+{
+    margin-left: 300px;
+    width: auto;
+    display: block;
+    overflow: hidden;
+}
+
+#menu_navigation ul
+{
+    list-style: none;
+}
+
+#menu_navigation li.item
+{
+    float: left;
+    background-color: #e9db94;
+    border-top: 1px solid #85806d;
+    border-left: 1px solid #85806d;
+    border-right: 1px solid #85806d;
+    width: 25%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#menu_navigation li.item a
+{
+    color: black;
+    text-transform: uppercase;
+    line-height: 30px;
+    display: block;
+}
+
+#menu_navigation li.item a:hover
+{
+    background-color: #A18E45;
+    color: white;
+}
+/* --------------- */
+
+/* Filter */
+#items_filter
+{
+    margin: 0 5px;
+    overflow: hidden;
+}
+
+div.widget.range
+{
+    display: block;
+    width: 100%;
+}
+
+div.widget.range input
+{
+    display: inline-block;
+    margin: 0 2px;
+    box-sizing: border-box;
+}
+
+#items_filter_search_button,
+#items_filter_clear_button
+{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 5px 0;
+    background-color: #e9db94;
+    border: 1px solid #85806d;
+    font-size: 20px;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+#items_filter_search_button:hover,
+#items_filter_clear_button:hover
+{
+    background-color: #A18E45;
+    color: white;
+}
+/* ------ */
+
+/* contacts page */
+div.prev_manager
+{
+    width: 500px;
+    height: 100px;
+    overflow: hidden;
+    border: 1px solid #f1f1f1;
+}
+
+#managers_table
+{
+    margin-bottom: 4px;
+}
+
+/* ------ */

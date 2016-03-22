@@ -1,0 +1,45 @@
+<!--
+    items - set of items in category
+-->
+{% extends 'main.html' %}
+
+{% load thumbnail %}
+
+{% block title %}
+    {{ category.name }}
+{% endblock %}
+
+{% block header %}
+    {% include 'logo.html' %}
+    {% include 'menus/menu_navigation.html' %}
+    <div id="main_contacts">
+        <span>г. Пермь</span><br>
+        {% load user_profile_tags %}
+        {% show_main_contacts %}
+    </div>
+{% endblock %}
+
+{% block sidebar_left %}
+    <div class="item">
+        {% include 'menus/menu_catalog.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div style="text-align: left;">
+        <h1 class="underlined_bottom" style="display: inline-block; padding-left: 10px; margin-left: 0px; ">{{ category.name }}</h1>
+    </div>
+    <div id="content_body">
+        <div id="items_in_catalog_table">
+            {% for item in items %}
+                <div class="item_in_catalog">
+                    <a href="{% url 'item_page' item.id %}" class="item_in_catalog"></a>
+                    <h3>{{ item.name }}</h3>
+                    <img src="{{ item.main_image.image|thumbnail_url:'item_in_catalog' }}" />
+                </div>
+            {% empty %}
+                No items found
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

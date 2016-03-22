@@ -1,0 +1,19 @@
+
+.underlined_bottom
+{
+    border-image-source: url("/static/adrian/images/strip.jpg");
+    border-image-slice: 1;
+    border-image-width: 0 0 1px 0;
+}
+
+.underlined_top
+{
+    border-image-source: url("/static/adrian/images/strip.jpg");
+    border-image-slice: 1;
+    border-image-width: 1px 0 0 0;
+}
+
+.dark_border
+{
+    border: 1px solid #7f7e7a;
+}

@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta name='yandex-verification' content='635b62e2a53320a6' />
+    <meta charset="UTF-8">
+    <link href="{% static 'adrian/css/style.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'adrian/images/shortcut_icon.png' %}">
+    <title>
+        {% block title %}
+            Adrian
+        {% endblock %}
+    </title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <div id = "wrapper">
+        <div id="header">
+            {% block header %}
+            {% endblock %}
+        </div>
+        <div id="sidebar_left">
+            {% block sidebar_left %}
+            {% endblock %}
+        </div>
+        <div id = "content" style="text-align: center;">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

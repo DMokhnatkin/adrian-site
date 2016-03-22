@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Контакты
+{% endblock %}
+
+{% block header %}
+    {% include 'logo.html' %}
+    {% include 'menus/menu_navigation.html' %}
+    <div id="main_contacts">
+        <span>г. Пермь</span><br>
+        {% load user_profile_tags %}
+        {% show_main_contacts %}
+    </div>
+{% endblock %}
+
+{% block sidebar_left %}
+    <div class="item">
+        {% include 'menus/menu_catalog.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div id="contacts_title" class="title underlined_bottom padding_left_10" style="width: 250px;">
+        <h1>Контакты</h1>
+    </div>
+    <div id="contacts" class="underlined_bottom padding_left_10" style="width: 250px;">
+        {% load user_profile_tags %}
+        {% show_main_contacts %}
+    </div>
+    <div id="yamap" class="padding_10">
+            <script type="text/javascript"
+            charset="utf-8"
+            src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=eocv_UC0zXZ7gaQbAuLW4wdCZQJ45V18&height=450"></script>
+    </div>
+    <div id="time" class="underlined_top padding_left_10" style="width: 250px;">
+        <span>Время работы:</span><br>
+        <span>Пн-пт с 9:00-18:00</span>
+    </div>
+{% endblock %}

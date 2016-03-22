@@ -1,0 +1,12 @@
+{% comment%}
+    user - user which was selected to show as main contacts
+{% endcomment %}
+
+{% if user %}
+    <span>Тел.</span>
+    {% for phone in user.phonenumber_set.all %}
+        <span class="phone_number">{{ phone.val }}</span><br>
+    {% endfor %}
+    <span>E-mail:</span>
+    {{ user.user.email }}
+{% endif %}
