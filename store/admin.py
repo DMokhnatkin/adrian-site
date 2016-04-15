@@ -28,10 +28,10 @@ class CharacteristicInLine(admin.StackedInline):
     def has_add_permission(self, request, obj=None):
         return False
 
-
 class ModificationAdmin(admin.ModelAdmin):
     inlines = [CharacteristicInLine]
     list_display = ('name', 'item')
+    list_filter = ['item']
 
 
 class ModificationInLine(admin.StackedInline):
@@ -46,6 +46,7 @@ class ItemImageInLine(admin.StackedInline):
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'category')
+    list_filter = ['category']
     inlines = [ItemImageInLine, ModificationInLine]
 
 

@@ -6,6 +6,10 @@
     {{ item.name }}
 {% endblock %}
 
+{% block head %}
+    <script type="text/javascript" src="{% static 'js/store/cart.js' %}"></script>
+{% endblock %}
+
 {% block header %}
     {% include 'logo.html' %}
     {% include 'menus/menu_navigation.html' %}
@@ -37,14 +41,15 @@
         <div id="item_description">
             <span class="normal">{{ item.description }}</span>
         </div>
+        {{ item }}
         <div id="characteristics">
             <!-- We will render two same tables to fix first column -->
             <table class="first">
                 <thead>
                     <tr class="header">
                         <td class="first header"></td>
-                        {% for value in characteristic_table_data.modification_names %}
-                            <td>{{ value }}</td>
+                        {% for modif in modifications %}
+                            <td>{{ modif.name }}</td>
                         {% endfor %}
                     </tr>
                 </thead>
@@ -57,6 +62,13 @@
                             {% endfor %}
                         </tr>
                     {% endfor %}
+                    <!--Add to cart buttons-->
+                    <tr>
+                        <td class="first"></td>
+                        {% for modif in modifications %}
+                            <td>{% include 'store/cart/add_to_cart_bt.html' with modification_name=modif.name %}</td>
+                        {% endfor %}
+                    </tr>
                 </tbody>
             </table>
             <div class="scrolled">
@@ -64,8 +76,8 @@
                 <thead>
                     <tr>
                         <td class="first"></td>
-                        {% for value in characteristic_table_data.modification_names %}
-                            <td>{{ value }}</td>
+                        {% for modif in modifications %}
+                            <td>{{ modif.name }}</td>
                         {% endfor %}
                     </tr>
                 </thead>
@@ -78,6 +90,13 @@
                             {% endfor %}
                         </tr>
                     {% endfor %}
+                    <!--Add to cart buttons-->
+                    <tr>
+                        <td class="first"></td>
+                        {% for modif in modifications %}
+                            <td>{% include 'store/cart/add_to_cart_bt.html' with modification=modif %}</td>
+                        {% endfor %}
+                    </tr>
                 </tbody>
                 </table>
             </div>

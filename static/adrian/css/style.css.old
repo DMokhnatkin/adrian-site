@@ -187,7 +187,6 @@ a.item_in_catalog
 #characteristics div.scrolled
 {
     overflow: auto;
-	z-index: 9999;
 }
 
 #characteristics table
@@ -200,7 +199,7 @@ a.item_in_catalog
 {
     position: absolute;
     top: 20px;
-    z-index: 0;
+    z-index: 1;
 }
 
 #characteristics table.first td
@@ -224,7 +223,6 @@ a.item_in_catalog
 #characteristics table.second td.first
 {
     visibility: hidden;
-	z-index: 9999;
 }
 
 #characteristics thead
@@ -249,18 +247,6 @@ a.item_in_catalog
 {
     border: 1px solid #e4e4e4;
     font-size: 14px;
-}
-
-#characteristics a.add-to-cart{
-    padding: 10px;
-    margin: 2px;
-    display: block;
-    background: #E9DB94;
-    color: black;
-}
-
-#characteristics a.add-to-cart:hover{
-	cursor: pointer;
 }
 /* ----------*/
 

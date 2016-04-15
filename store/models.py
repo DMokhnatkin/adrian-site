@@ -34,7 +34,7 @@ class Item(models.Model):
 
 class ItemImage(models.Model):
     item = models.ForeignKey(Item)
-    image = ThumbnailerImageField(upload_to='media/images/store',  validators=[validators.RegexValidator(regex=r'^[\x00-\x7F]+$', message="Only ascii characters can be used")])
+    image = ThumbnailerImageField(upload_to='images/store',  validators=[validators.RegexValidator(regex=r'^[\x00-\x7F]+$', message="Only ascii characters can be used")])
 
 
 class Modification(models.Model):
@@ -123,5 +123,5 @@ class Characteristic(models.Model):
 
 # Price for catalog
 class Price(models.Model):
-    file = models.FileField(upload_to='media/files')
+    file = models.FileField(upload_to='files')
     label = models.CharField(max_length=50, default="")
