@@ -176,82 +176,48 @@ a.item_in_catalog
     padding: 4px;
 }
 
-#characteristics
+#charact-wrapper
 {
     padding-top: 20px;
     clear: both;
     position: relative;
-    overflow: hidden;
-}
-
-#characteristics div.scrolled
-{
     overflow: auto;
-	z-index: 9999;
 }
 
-#characteristics table
+#charact-table
 {
     border-collapse: collapse;
     line-height: 1.5em;
 }
 
-#characteristics table.first
-{
-    position: absolute;
-    top: 20px;
-    z-index: 0;
-}
-
-#characteristics table.first td
-{
-    visibility: hidden;
-    border: none;
-}
-
-#characteristics table.first td.first
-{
-    visibility: visible;
-    background: white;
-    border: 1px solid #e4e4e4;
-}
-
-#characteristics table.first td.first.header
-{
-    background-color: #f8f8f8
-}
-
-#characteristics table.second td.first
-{
-    visibility: hidden;
-	z-index: 9999;
-}
-
-#characteristics thead
+#charact-table thead
 {
     color: #888;
     background-color: #f8f8f8;
     border: 1px solid #e4e4e4;
 }
 
-#characteristics td
+#charact-table td,
+#charact-table tbody th
 {
     padding: 0 10px;
     text-align: center;
 }
 
-#characteristics tbody tr:hover
+#charact-table tbody tr:not(.add-to-cart-buttons):hover
 {
     background-color: #eee;
+    cursor: pointer;
 }
 
-#characteristics tbody td
+#charact-table tbody td,
+#charact-table tbody th
 {
     border: 1px solid #e4e4e4;
     font-size: 14px;
 }
 
-#characteristics a.add-to-cart{
+#charact-table a.add-to-cart{
     padding: 10px;
     margin: 2px;
     display: block;
@@ -259,8 +225,10 @@ a.item_in_catalog
     color: black;
 }
 
-#characteristics a.add-to-cart:hover{
+#charact-table a.add-to-cart:hover{
 	cursor: pointer;
+    background-color: #A18E45;
+    color: white;
 }
 /* ----------*/
 
