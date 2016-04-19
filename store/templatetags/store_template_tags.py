@@ -2,17 +2,15 @@ __author__ = 'Dmitriy'
 
 from store import models as store_models
 from django import template
+from decimal import *
 
 
 register = template.Library()
 
-@register.inclusion_tag('store/template_tags/show_categories.html')
-def show_categories():
-    categories = store_models.Category.objects.all()
-    if categories:
-        return {'categories': categories}
-    else:
-        return {'categories': None}
+# Get all categories
+@register.assignment_tag(name='get_categories')
+def get_categories():
+    return store_models.Category.objects.all()
 
 
 @register.inclusion_tag('store/template_tags/print_price.html')

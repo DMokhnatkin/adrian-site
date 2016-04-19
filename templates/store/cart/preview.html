@@ -1,4 +1,31 @@
-<div>
-    <a href="a">a1</a>
-    <a href="a">a2</a>
+{% comment %}
+    items_in_cart - list of {modification: modification, count: int, comm_price: {val: Decimal, unit: str}}.
+    commom_price - {'val':Decimal, 'unit':str}
+{% endcomment %}
+
+<div class="large">
+    <div class="title padding_left_10 underlined_bottom">
+        <h3>Корзина</h3>
+    </div>
+    <ul class="padding_left_10">
+        <ul id="cart-preview-list">
+            {% for val in items_in_cart %}
+                <li>
+                    <a href="{% url 'item_page' val.modification.item.id %}" class="simple-link normal-size">{{ val.modification.item.name }} {{ val.modification.name }}</a> ({{ val.count }})
+                    <p><span class="price">{{ val.comm_price.formatted_val }}</span> <span class="price-unit">{{ val.comm_price.unit }}</span></p>
+                </li>
+            {% empty %}
+                Пусто
+            {% endfor %}
+            {% if items_in_cart|length > 0 %}
+                <p>Всего: <span class="price">{{ common_price.formatted_val }}</span>{{ common_price.unit }}</p>
+            {% endif %}
+        </ul>
+        <table id="cart-preview-toolbox">
+            <tr>
+                <td><a href="#" class="simple-button">Оформить</a></td>
+                <td><a href="#" class="simple-button clear-cart">Очистить</a></td>
+            </tr>
+        </table>
+    </ul>
 </div>

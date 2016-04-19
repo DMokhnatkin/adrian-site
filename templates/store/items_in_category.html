@@ -5,8 +5,16 @@
 
 {% load thumbnail %}
 
+{% load staticfiles %}
+
 {% block title %}
     {{ category.name }}
+{% endblock %}
+
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/lib/js-cookie/js.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/store/cart.js' %}"></script>
 {% endblock %}
 
 {% block header %}
@@ -23,7 +31,9 @@
     <div class="item">
         {% include 'menus/menu_catalog.html' %}
     </div>
-    {% include 'store/cart/preview.html' %}
+    <div id='cart-preview-block' class="item">
+        {% include 'store/cart/preview.html' %}
+    </div>
 {% endblock %}
 
 {% block content %}

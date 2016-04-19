@@ -27,7 +27,7 @@ body
     margin: 0 auto;
 }
 
-#header
+header
 {
     position: relative;
     background-color: #f7f0d4;
@@ -73,7 +73,12 @@ body
     text-align: center;
 }
 
-#header img.logo
+a:visited
+{
+    color: black;
+}
+
+header img.logo
 {
     margin: 5px;
 }
@@ -82,6 +87,34 @@ div.title
 {
     display: inline-block;
 }
+
+/* Links */
+a.simple-button
+{
+    padding: 10px;
+    margin: 2px;
+    display: block;
+    background: #E9DB94;
+    color: black;
+}
+
+a.simple-button:hover
+{
+    cursor: pointer;
+    background-color: #A18E45;
+    color: white;
+}
+
+a.simple-link
+{
+
+}
+
+a.simple-link:hover
+{
+    color: #A18E45;
+}
+/* ----- */
 
 /* Breadcrumbs */
 #breadcrumbs
@@ -179,7 +212,7 @@ a.item_in_catalog
 #charact-wrapper
 {
     padding-top: 20px;
-    clear: both;
+    width: 100%;
     position: relative;
     overflow: auto;
 }
@@ -216,20 +249,6 @@ a.item_in_catalog
     border: 1px solid #e4e4e4;
     font-size: 14px;
 }
-
-#charact-table a.add-to-cart{
-    padding: 10px;
-    margin: 2px;
-    display: block;
-    background: #E9DB94;
-    color: black;
-}
-
-#charact-table a.add-to-cart:hover{
-	cursor: pointer;
-    background-color: #A18E45;
-    color: white;
-}
 /* ----------*/
 
 /* Text */
@@ -246,7 +265,6 @@ a.item_in_catalog
 /* Menu catalog */
 #menu_catalog
 {
-    color: black;
 }
 
 #menu_catalog h3
@@ -255,17 +273,8 @@ a.item_in_catalog
     padding-bottom: 0;
 }
 
-#menu_catalog a, #menu_catalog a:visited
-{
-    color: black;
-}
-
-#menu_catalog a:hover
-{
-    color: #A18E45;
-}
-
-#menu_catalog li:before
+#menu_catalog li:before,
+#cart-preview-list li:before
 {
     content: "-";
 }
@@ -368,4 +377,29 @@ div.prev_manager
     margin-bottom: 4px;
 }
 
+/* ------ */
+
+/* cart preview */
+#cart-preview-toolbox,
+#cart-preview-toolbox tbody,
+#cart-preview-toolbox tr
+{
+    display: block;
+}
+
+#cart-preview-toolbox td
+{
+    width: 50%;
+    text-align: center;
+}
+
+#cart-preview-list
+{
+    font-size: 11pt;
+}
+
+#cart-preview-list .price
+{
+    font-weight: bold;
+}
 /* ------ */

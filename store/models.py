@@ -49,6 +49,11 @@ class Modification(models.Model):
         return Characteristic.objects.get(field_type=field_type, modification=self)
 
 
+    # Get characteristic value by field name
+    def get_characteristic_by_name(self, field_name):
+        return self.get_characteristic(FieldType.objects.get(name=field_name, category_id=self.item.category));
+
+
 # After creation Modification we must create characteristics and set null values
 @receiver(signals.post_save, sender=Modification)
 def constructor_modification(instance, **kwargs):
@@ -119,6 +124,9 @@ class Characteristic(models.Model):
 
     def title(self):
         return self.field_type.title
+
+    def unit(self):
+        return self.field_type.unit
 
 
 # Price for catalog

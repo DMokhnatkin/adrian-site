@@ -8,6 +8,7 @@
 
 {% block head %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/lib/js-cookie/js.cookie.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/store/cart.js' %}"></script>
 {% endblock %}
 
@@ -24,6 +25,9 @@
 {% block sidebar_left %}
     <div class="item">
         {% include 'menus/menu_catalog.html' %}
+    </div>
+    <div id='cart-preview-block' class="item">
+        {% include 'store/cart/preview.html' %}
     </div>
 {% endblock %}
 
@@ -65,7 +69,7 @@
                     <tr class="add-to-cart-buttons">
                         <th></th>
                         {% for modif in modifications %}
-                            <td>{% include 'store/cart/add_to_cart_bt.html' with modification_name=modif.name %}</td>
+                            <td><a href="#" id="bt-{{ modif.id }}" class="simple-button add-to-cart">В корзину</a></td>
                         {% endfor %}
                     </tr>
                 </tbody>

@@ -5,6 +5,9 @@
     </div>
     <ul class="padding_left_10">
         {% load store_template_tags %}
-        {% show_categories %}
+        {% get_categories as categories %}
+        {% for categ in categories %}
+            <li><a href="{% url 'items_in_category' categ.id %}" class="simple-link">{{ categ.name }}</a></li>
+        {% endfor %}
     </ul>
 </div>
