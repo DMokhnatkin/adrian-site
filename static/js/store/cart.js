@@ -56,7 +56,7 @@ function setCountInCart(productId, count) {
     var prods = getProdsInCart();
     prods = (prods) ? prods : {};
     prods[productId] = count;
-    Cookies.set(cartCookieName, prods);
+    Cookies.set(cartCookieName, prods, { expires: 7 });
     $(document).trigger('cartChanged');
 }
 

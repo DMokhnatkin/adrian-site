@@ -3,7 +3,9 @@ __author__ = 'Dmitriy'
 from store import models as store_models
 from django import template
 from decimal import *
+import locale
 
+locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8');
 
 register = template.Library()
 
@@ -23,3 +25,8 @@ def print_price_link():
 def price_url():
     price = store_models.Price.objects.get(pk=1)
     return price.file.url
+
+
+@register.filter(name='print_price')
+def print_price(val):
+    return locale.format("%d", val, grouping=True)

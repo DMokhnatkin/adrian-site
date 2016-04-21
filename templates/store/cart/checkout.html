@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+    Оформить заказ
+{% endblock %}
+
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/lib/js-cookie/js.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/store/cart.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+    {% include 'logo.html' %}
+    {% include 'menus/menu_navigation.html' %}
+    <div id="main_contacts">
+        <span>г. Пермь</span><br>
+        {% load user_profile_tags %}
+        {% show_main_contacts %}
+    </div>
+{% endblock %}
+
+{% block sidebar_left %}
+    <div class="item">
+        {% include 'menus/menu_catalog.html' %}
+    </div>
+    <div id='cart-preview-block' class="item">
+        {% include 'store/cart/preview.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <p>Test</p>
+{% endblock %}

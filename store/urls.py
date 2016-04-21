@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^category/(?P<category_id>\d+)$', views.ItemsInCategory.as_view(), name='items_in_category'),
     url(r'^item/(?P<item_id>\d+)$', views.item_page, name='item_page'),
     url(r'^cartPreview$', views.cart_preview, name='cart_preview'),
+    url(r'^checkout', views.cart_checkout, name='cart_checkout')
 )
