@@ -4,6 +4,7 @@
 
 var cartCookieName = 'products_in_cart';
 var cartReloadUrl = '/store/cart/cartPreview';
+var cartCheckoutUrl = '/store/cart/checkout';
 
 $(document).ready(function(){
     // Add logic for add-to-cart buttons
@@ -16,8 +17,11 @@ $(document).ready(function(){
     // Add logic for preview toolbox buttons
     $(document).on('cartPreviewLoaded', function () {
         $('a.clear-cart').click(function () {
-            clear();
-        })
+            if (confirm('Очистить корзину?'))
+            {
+                clear();
+            }
+        });
     });
 
     // Reload cart preview when cart is changed

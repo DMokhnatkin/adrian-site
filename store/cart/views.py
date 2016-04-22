@@ -5,6 +5,7 @@ import json
 from django.http import HttpResponseForbidden
 from store.catalog import models as catalog_models
 from store.cart import models as cart_models
+from urllib import parse
 
 
 def cart_preview(request):
@@ -25,5 +26,11 @@ def cart_preview(request):
 
 
 def cart_checkout(request):
+    products_get = json.loads(parse.unquote(request.COOKIES.get('products_in_cart')))
+    products = None
+    if products_get:
+        products = cart_models.ProductsList(source=products_get.items())
+    else:
+        products = cart_models.ProductsList()
     return render(request, 'store/cart/checkout.html',
-                  {})
+                  {'products': products})

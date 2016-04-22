@@ -1,4 +1,7 @@
 {% extends 'main.html' %}
+{% comment %}
+    products - cart.models.ProductList
+{% endcomment %}
 
 {% load staticfiles %}
 
@@ -26,13 +29,37 @@
     <div class="item">
         {% include 'menus/menu_catalog.html' %}
     </div>
-    <div id='cart-preview-block' class="item">
-        {% include 'store/cart/preview.html' %}
-    </div>
 {% endblock %}
 
 {% block content %}
     <div style="text-align: left; margin-bottom: 20px;">
         <h1 id="content-title" class="underlined_bottom">Оформить заказ</h1>
+        {{ test }}
+        <table class="cart-products">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Цена за единицу</th>
+                    <th>Количество</th>
+                    <th>Цена всего</th>
+                </tr>
+            </thead>
+            {% load money %}
+            {% for prod in products %}
+                <tr>
+                    <td>{{ prod.modification.item.name }} {{ prod.modification.name }}</td>
+                    <td>{{ prod.price|print_price }} {{ prod.unit }}</td>
+                    <td>{{ prod.count }}</td>
+                    <td>{{ prod.total_price|print_price }} {{ prod.unit }}</td>
+                </tr>
+            {% empty %}
+                <tr><td>Корзина пуста</td></tr>
+            {% endfor %}
+            <tr class="cart-total">
+                <td>Итого:</td>
+                <td colspan="2"></td>
+                <td>{{ products.total_price|print_price }} {{ products.get_total_price_unit }}</td>
+            </tr>
+        </table>
     </div>
 {% endblock %}

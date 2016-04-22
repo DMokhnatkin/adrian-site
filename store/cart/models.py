@@ -1,6 +1,7 @@
 from django.db import models
 from decimal import *
 import collections
+from store.catalog.models import Modification
 
 
 def get_price(modification):
@@ -33,8 +34,15 @@ class Product:
 # Represents cart
 class ProductsList:
     total_price = Decimal(0)
-    def __init__(self):
+    def __init__(self, source=None, **kwargs):
+        '''
+        :param source: Source to initialize
+        :type source: Iterable, each cell of which is ('modification id', 'count in cart')
+        '''
         self.products = []
+        if source is not None:
+            for mod_id, ct in source:
+                self.add_product(Product(Modification.objects.get(id=mod_id), ct))
     def add_product(self, product):
         '''
         Add product to cart and recalculate total_price
