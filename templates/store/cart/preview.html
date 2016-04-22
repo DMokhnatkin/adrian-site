@@ -1,6 +1,5 @@
 {% comment %}
-    items_in_cart - list of {modification: modification, count: int, comm_price: {val: Decimal, unit: str}}.
-    commom_price - {'val':Decimal, 'unit':str}
+    products - cart.models.ProductsList
 {% endcomment %}
 
 <div class="large">
@@ -9,17 +8,17 @@
     </div>
     <ul class="padding_left_10">
         <ul id="cart-preview-list">
-            {% load store_template_tags %}
-            {% for prod in items_in_cart %}
+            {% load money %}
+            {% for prod in products %}
                 <li>
-                    <a href="{% url 'item_page' prod.modification.item.id %}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a> ({{ prod.count }})
-                    <p><span class="price">{{ prod.comm_price|print_price  }}</span> <span class="price-unit">{{ prod.unit }}</span></p>
+                    <a href="{% url 'item_page' prod.modification.item.id %}?modification={{ prod.modification.id }}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a> ({{ prod.count }})
+                    <p><span class="price">{{ prod.total_price|print_price  }}</span> <span class="price-unit">{{ prod.unit }}</span></p>
                 </li>
             {% empty %}
                 Пусто
             {% endfor %}
-            {% if items_in_cart|length > 0 %}
-                <p>Всего: <span class="price">{{ common_price.val|print_price }}</span> {{ common_price.unit }} </p>
+            {% if products|length > 0 %}
+                <p>Всего({{ products|length }}): <span class="price">{{ products.total_price|print_price }}</span> {{ products.get_total_price_unit }} </p>
             {% endif %}
         </ul>
         <table id="cart-preview-toolbox">

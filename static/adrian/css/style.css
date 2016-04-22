@@ -62,7 +62,6 @@ header
 
 #content h1
 {
-    margin-left: 10px;
     text-align: left;
     font-size: 30px;
 }
@@ -107,7 +106,7 @@ a.simple-button:hover
 
 a.simple-link
 {
-
+    color: black;
 }
 
 a.simple-link:hover
@@ -235,6 +234,11 @@ a.item_in_catalog
 {
     padding: 0 10px;
     text-align: center;
+}
+
+#charact-table td.selected
+{
+    background-color: #c4dce8;
 }
 
 #charact-table tbody tr:not(.add-to-cart-buttons):hover
@@ -403,3 +407,12 @@ div.prev_manager
     font-weight: bold;
 }
 /* ------ */
+
+/* Checkout page */
+#content-title
+{
+    display: inline-block;
+    margin-left: 0;
+    padding-left: 10px;
+}
+/* ---- */
