@@ -3,11 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.generic import View
-from store.itemsFilter import forms as filter_forms
 
 from store.catalog import models
-from store.itemsFilter import engine as filter_engine
-
 
 class ItemsInCategory(View):
     def get(self, request, *args, **kwargs):
