@@ -6,7 +6,7 @@
 {% load staticfiles %}
 
 {% block title %}
-    Оформить заказ
+    Заказ оформлен
 {% endblock %}
 
 {% block head %}
@@ -61,12 +61,6 @@
                 <td>{{ products.total_price|print_price }} {{ products.get_total_price_unit }}</td>
             </tr>
         </table>
-        <form id="checkout-info" method="post">
-            {% csrf_token %}
-            <table>
-                {{ form.as_table }}
-            </table>
-            <input type="submit" value="Submit" />
-        </form>
+        <p>Оформлен</p>
     </div>
 {% endblock %}

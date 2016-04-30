@@ -459,4 +459,9 @@ table.cart-products tr.cart-total
 {
     font-weight: bold;
 }
+
+#checkout-info
+{
+    margin: 10px;
+}
 /* ---- */

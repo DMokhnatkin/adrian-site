@@ -2,6 +2,8 @@ from django.db import models
 from decimal import *
 import collections
 from store.catalog.models import Modification
+from urllib import parse
+import json
 
 
 def get_price(modification):
@@ -34,15 +36,27 @@ class Product:
 # Represents cart
 class ProductsList:
     total_price = Decimal(0)
+    @staticmethod
+    def parse_from_request(request):
+        products_in_cookies = json.loads(parse.unquote(request.COOKIES.get('products_in_cart')))
+        if products_in_cookies:
+            return ProductsList(source=products_in_cookies.items())
+        else:
+            return ProductsList()
     def __init__(self, source=None, **kwargs):
         '''
         :param source: Source to initialize
         :type source: Iterable, each cell of which is ('modification id', 'count in cart')
         '''
         self.products = []
+        self.bad_products = [] # Products which are missing in database (maybe removed)
         if source is not None:
             for mod_id, ct in source:
-                self.add_product(Product(Modification.objects.get(id=mod_id), ct))
+                mod = Modification.objects.get(id=mod_id)
+                if mod is None:
+                    self.bad_products.append({'id': mod_id, 'ct': ct})
+                else:
+                    self.add_product(Product(mod, ct))
     def add_product(self, product):
         '''
         Add product to cart and recalculate total_price
