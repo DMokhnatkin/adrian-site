@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'contacts',
 	'user_profile',
 	'slideshows',
+    'captcha'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -141,3 +142,16 @@ THUMBNAIL_ALIASES = {
 		'slideshow': {'size': (700, 530), 'crop': True}
     },
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'adrian.perm.ru@gmail.com'
+EMAIL_HOST_PASSWORD = '2xqMqAaL0XuMT6FRYyEO'
+EMAIL_USE_TLS = True
+
+RECAPTCHA_PUBLIC_KEY = '6LdaMx8TAAAAAIsIWfBvG50bn1M3z__3TbvDEMhQ'
+RECAPTCHA_PRIVATE_KEY = '6LdaMx8TAAAAADj5DI-IT5igldAFv_KSS0m29y6U'
+NOCAPTCHA = True
+RECAPTCHA_USE_SSL = True
+

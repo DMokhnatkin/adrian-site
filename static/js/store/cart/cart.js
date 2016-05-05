@@ -13,7 +13,7 @@ $(document).ready(function(){
         setCountInCart(prodId, getCountInCart(prodId) + 1);
         return false;
     });
-
+    
     // Add logic for preview toolbox buttons
     $(document).on('cartPreviewLoaded', function () {
         $('a.clear-cart').click(function () {

@@ -38,7 +38,10 @@ class ProductsList:
     total_price = Decimal(0)
     @staticmethod
     def parse_from_request(request):
-        products_in_cookies = json.loads(parse.unquote(request.COOKIES.get('products_in_cart')))
+        cookies = request.COOKIES.get('products_in_cart')
+        if not cookies:
+            return ProductsList()
+        products_in_cookies = json.loads(parse.unquote(cookies))
         if products_in_cookies:
             return ProductsList(source=products_in_cookies.items())
         else:
@@ -73,4 +76,5 @@ class ProductsList:
         return iter(self.products)
     def __len__(self):
         return len(self.products)
-
+    def __nonzero__(self):
+        return self.products.__nonzero__()

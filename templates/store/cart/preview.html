@@ -23,7 +23,7 @@
         </ul>
         <table id="cart-preview-toolbox">
             <tr>
-                <td><a href="{% url 'cart_checkout' %}" class="simple-button">Оформить</a></td>
+                <td><a href="{% url 'cart_checkout' %}" class="simple-button checkout {% if not products %}disabled{% endif %}">Оформить</a></td>
                 <td><a href="#" class="confirm simple-button clear-cart">Очистить</a></td>
             </tr>
         </table>

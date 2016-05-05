@@ -88,20 +88,32 @@ div.title
 }
 
 /* Links */
-a.simple-button
+a.simple-button,
+input.simple-button,
+button.simple-button
 {
     padding: 10px;
     margin: 2px;
     display: block;
     background: #E9DB94;
     color: black;
+    border: none;
+    cursor: pointer;
 }
 
-a.simple-button:hover
+a.simple-button:hover,
+input.simple-button:hover,
+button.simple-button:hover
 {
     cursor: pointer;
     background-color: #A18E45;
     color: white;
+}
+
+a.simple-button.disabled
+{
+    pointer-events: None;
+    background: #ac9f67;
 }
 
 a.simple-link
@@ -463,5 +475,17 @@ table.cart-products tr.cart-total
 #checkout-info
 {
     margin: 10px;
+}
+
+.error input
+{
+    border: 1px solid #dd4b39;
+}
+
+.error span.error-message
+{
+    display: block;
+    font-size: 8pt;
+    color: #dd4b39;
 }
 /* ---- */

@@ -23,7 +23,6 @@ class ItemsInCategory(View):
 def item_page(request, item_id):
     item = models.Item.objects.get(id=item_id)
     characteristic_table_data = {'characteristics': {}}
-    has_not_none = bool
     for field_type in item.category.fieldtype_set.all():
         characteristic_table_data['characteristics'][field_type.title] = []
         has_not_none = False
