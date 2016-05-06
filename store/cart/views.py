@@ -36,8 +36,8 @@ def cart_checkout(request):
             msg['Subject'] = 'Заказ на сайте'
             msg['From'] = 'adrian-perm.ru'
             user_data = {}
-            for key, value in form.cleaned_data.items():
-                user_data[form.fields[key].label] = value
+            for field in form.visible_fields():
+                user_data[field.label] = form.cleaned_data[field.name]
             msg.attach(MIMEText(get_template('store/cart/checkout_email.html').render({'user_data': user_data}), 'html'))
 
             server.sendmail(adrian_settings.EMAIL_HOST_USER, cart_settings.StoreCartConfig.checkout_emails, msg.as_string())

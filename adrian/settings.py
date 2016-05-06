@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'contacts',
 	'user_profile',
 	'slideshows',
-    'captcha'
+    'captcha',
+    'phonenumber_field'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -155,3 +156,5 @@ RECAPTCHA_PRIVATE_KEY = '6LdaMx8TAAAAADj5DI-IT5igldAFv_KSS0m29y6U'
 NOCAPTCHA = True
 RECAPTCHA_USE_SSL = True
 
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'RU'

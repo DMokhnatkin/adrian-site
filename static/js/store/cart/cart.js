@@ -1,7 +1,3 @@
-/**
- * Created by Dmitriy on 14.04.2016.
- */
-
 var cartCookieName = 'products_in_cart';
 var cartReloadUrl = '/store/cart/cartPreview';
 var cartCheckoutUrl = '/store/cart/checkout';

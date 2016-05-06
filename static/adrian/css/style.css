@@ -477,6 +477,12 @@ table.cart-products tr.cart-total
     margin: 10px;
 }
 
+table.user-info input,
+table.user-info label
+{
+    font-size: 14pt;
+}
+
 .error input
 {
     border: 1px solid #dd4b39;
