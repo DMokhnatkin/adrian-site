@@ -32,9 +32,12 @@
     <div class="item">
         {% include 'menus/menu_catalog.html' %}
     </div>
-    <div id='cart-preview-block' class="item">
-        {% include 'store/cart/preview.html' %}
-    </div>
+    {% if render_cart %}
+        <div id='cart-preview-block' class="item">
+            {% load cart_tags %}
+            {% render_preview_cart products %}
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block content %}

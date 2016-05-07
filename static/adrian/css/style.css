@@ -499,4 +499,9 @@ form.checkout-info input.address-field
     font-size: 8pt;
     color: #dd4b39;
 }
+
+div.success-message
+{
+    margin: 10px;
+}
 /* ---- */

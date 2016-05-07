@@ -8,7 +8,7 @@
     </div>
     <ul class="padding_left_10">
         <ul id="cart-preview-list">
-            {% load money %}
+            {% load money_tags %}
             {% for prod in products %}
                 <li>
                     <a href="{% url 'item_page' prod.modification.item.id %}?modification={{ prod.modification.id }}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a> ({{ prod.count }})
@@ -21,11 +21,13 @@
                 <p>Всего({{ products|length }}): <span class="price">{{ products.total_price|print_price }}</span> {{ products.get_total_price_unit }} </p>
             {% endif %}
         </ul>
+    {% if render_toolbox %}
         <table id="cart-preview-toolbox">
             <tr>
                 <td><a href="{% url 'cart_checkout' %}" class="simple-button checkout {% if not products %}disabled{% endif %}">Оформить</a></td>
                 <td><a href="#" class="confirm simple-button clear-cart">Очистить</a></td>
             </tr>
         </table>
+    {% endif %}
     </ul>
 </div>

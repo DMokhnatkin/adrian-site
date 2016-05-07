@@ -34,18 +34,24 @@ class Product:
 
 
 # Represents cart
-class ProductsList:
-    total_price = Decimal(0)
+class ProductsCart:
+    cookie_name = 'products_in_cart'
+
     @staticmethod
     def parse_from_request(request):
-        cookies = request.COOKIES.get('products_in_cart')
+        cookies = request.COOKIES.get(ProductsCart.cookie_name)
         if not cookies:
-            return ProductsList()
+            return ProductsCart()
         products_in_cookies = json.loads(parse.unquote(cookies))
         if products_in_cookies:
-            return ProductsList(source=products_in_cookies.items())
+            return ProductsCart(source=products_in_cookies.items())
         else:
-            return ProductsList()
+            return ProductsCart()
+
+    @staticmethod
+    def clear_in_response(response):
+        response.delete_cookie(ProductsCart.cookie_name)
+
     def __init__(self, source=None, **kwargs):
         '''
         :param source: Source to initialize
@@ -53,6 +59,7 @@ class ProductsList:
         '''
         self.products = []
         self.bad_products = [] # Products which are missing in database (maybe removed)
+        self.total_price = Decimal(0)
         if source is not None:
             for mod_id, ct in source:
                 mod = Modification.objects.get(id=mod_id)
@@ -60,6 +67,7 @@ class ProductsList:
                     self.bad_products.append({'id': mod_id, 'ct': ct})
                 else:
                     self.add_product(Product(mod, ct))
+
     def add_product(self, product):
         '''
         Add product to cart and recalculate total_price
@@ -67,14 +75,18 @@ class ProductsList:
         '''
         self.products.append(product)
         self.total_price += product.total_price
+
     def get_total_price_unit(self):
         if len(self.products) > 0:
             return self.products[0].unit
         else:
             return None
+
     def __iter__(self):
         return iter(self.products)
+
     def __len__(self):
         return len(self.products)
+
     def __nonzero__(self):
         return self.products.__nonzero__()

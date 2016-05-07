@@ -61,6 +61,8 @@
                 <td>{{ products.total_price|print_price }} {{ products.get_total_price_unit }}</td>
             </tr>
         </table>
-        <p>Оформлен</p>
+        <div class="success-message">
+            <p><span style="color: #A18E45">Заказ оформлен.</span><br> В ближайшее время с вами свяжется наш сотрудник для подтверждения заказа</p>
+        </div>
     </div>
 {% endblock %}

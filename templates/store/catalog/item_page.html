@@ -8,8 +8,10 @@
 
 {% block head %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/lib/js-cookie/js.cookie.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/store/cart/cart.js' %}"></script>
+    {% if render_cart %}
+        <script type="text/javascript" src="{% static 'js/lib/js-cookie/js.cookie.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/store/cart/cart.js' %}"></script>
+    {% endif %}
 {% endblock %}
 
 {% block header %}
@@ -26,9 +28,12 @@
     <div class="item">
         {% include 'menus/menu_catalog.html' %}
     </div>
-    <div id='cart-preview-block' class="item">
-        {% include 'store/cart/preview.html' %}
-    </div>
+    {% if render_cart %}
+        <div id='cart-preview-block' class="item">
+            {% load cart_tags %}
+            {% render_preview_cart products %}
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -69,13 +74,14 @@
                             {% endfor %}
                         </tr>
                     {% endfor %}
-                    {% comment %} Add to cart buttons {% endcomment %}
-                    <tr class="add-to-cart-buttons">
+                    {% if render_cart %}
+                        <tr class="add-to-cart-buttons">
                         <th></th>
-                        {% for modif in modifications %}
-                            <td><a href="#" id="bt-{{ modif.id }}" class="simple-button add-to-cart">В корзину</a></td>
-                        {% endfor %}
-                    </tr>
+                            {% for modif in modifications %}
+                                <td><a href="#" id="bt-{{ modif.id }}" class="simple-button add-to-cart">В корзину</a></td>
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>

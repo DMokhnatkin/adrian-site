@@ -17,14 +17,15 @@ import smtplib
 
 def cart_preview(request):
     if request.method == 'GET' and request.is_ajax():
-        products = cart_models.ProductsList.parse_from_request(request)
-        return render(request, 'store/cart/preview.html',
-                      {'products': products})
+        products = cart_models.ProductsCart.parse_from_request(request)
+        return render(request, 'store/cart/render_cart/preview.html',
+                      {'products': products,
+                       'render_toolbox': True})
     return HttpResponseForbidden(request)
 
 
 def cart_checkout(request):
-    products = cart_models.ProductsList.parse_from_request(request)
+    products = cart_models.ProductsCart.parse_from_request(request)
     if request.method == 'POST':
         form = forms.CheckoutForm(request.POST)
         if form.is_valid():
@@ -42,7 +43,9 @@ def cart_checkout(request):
 
             server.sendmail(adrian_settings.EMAIL_HOST_USER, cart_settings.StoreCartConfig.checkout_emails, msg.as_string())
             server.quit()
-            return render(request, 'store/cart/checkout.html', {'products': products})
+            resp = render(request, 'store/cart/checkout_success.html', {'products': products})
+            cart_models.ProductsCart.clear_in_response(resp)
+            return resp
     else:
         form = forms.CheckoutForm()
     return render(request, 'store/cart/checkout.html',

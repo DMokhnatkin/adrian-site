@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.generic import View
+from django.apps import apps
 
 from store.catalog import models
 
@@ -16,8 +17,8 @@ class ItemsInCategory(View):
 
         return render(request, 'store/catalog/items_in_category.html',
             {"items": category.items(),
-            "category": category,
-            "filter": None})
+             'category': category,
+             'render_cart': apps.is_installed('store.cart')})
 
 
 def item_page(request, item_id):
@@ -42,7 +43,8 @@ def item_page(request, item_id):
                   {'item': item,
                    'characteristic_table_data': characteristic_table_data,
                    'modifications': item.modifications,
-                   'selected_modifications': request.GET.getlist('modification')})
+                   'selected_modifications': request.GET.getlist('modification'),
+                   'render_cart': apps.is_installed('store.cart')})
 
 
 def home(request):
