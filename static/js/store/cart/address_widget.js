@@ -10,7 +10,7 @@ $(document).ready(function () {
        ymaps.suggest($(this).val()).then(function (items) {
            var addresses = [];
            $.each(items, function (key, val) {
-               addresses.push(val.value);
+               addresses.push(val.displayName);
            });
            $(".address-field").autocomplete("option", "source", addresses);
        });

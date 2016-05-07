@@ -61,9 +61,9 @@
                 <td>{{ products.total_price|print_price }} {{ products.get_total_price_unit }}</td>
             </tr>
         </table>
-        <form id="checkout-info" method="post">
+        <form class="checkout-info" method="post">
             {% csrf_token %}
-            <table class="user-info">
+            <table>
                 {% for field in form.visible_fields  %}
                     <tr class="field-wrapper{% if field.errors|length > 0 %} {{ form.error_css_class }}{% endif %}">
                         <td>{{ field.label_tag }}</td>

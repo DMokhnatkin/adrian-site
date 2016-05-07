@@ -472,15 +472,20 @@ table.cart-products tr.cart-total
     font-weight: bold;
 }
 
-#checkout-info
+form.checkout-info
 {
     margin: 10px;
 }
 
-table.user-info input,
-table.user-info label
+form.checkout-info input,
+form.checkout-info label
 {
     font-size: 14pt;
+}
+
+form.checkout-info input.address-field
+{
+    width: 400px;
 }
 
 .error input
