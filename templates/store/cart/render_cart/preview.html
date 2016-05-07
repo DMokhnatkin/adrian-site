@@ -11,7 +11,8 @@
             {% load money_tags %}
             {% for prod in products %}
                 <li>
-                    <a href="{% url 'item_page' prod.modification.item.id %}?modification={{ prod.modification.id }}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a> ({{ prod.count }})
+                    {% load catalog_tags %}
+                    <a href="{% url_modification prod.modification %}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a> ({{ prod.count }})
                     <p><span class="price">{{ prod.total_price|print_price  }}</span> <span class="price-unit">{{ prod.unit }}</span></p>
                 </li>
             {% empty %}

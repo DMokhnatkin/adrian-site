@@ -44,7 +44,7 @@
                     <th>Цена всего</th>
                 </tr>
             </thead>
-            {% load money %}
+            {% load money_tags %}
             {% for prod in products %}
                 <tr>
                     <td>{{ prod.modification.item.name }} {{ prod.modification.name }}</td>

@@ -39,7 +39,12 @@ def cart_checkout(request):
             user_data = {}
             for field in form.visible_fields():
                 user_data[field.label] = form.cleaned_data[field.name]
-            msg.attach(MIMEText(get_template('store/cart/checkout_email.html').render({'user_data': user_data}), 'html'))
+            msg.attach(
+                MIMEText(
+                    get_template('store/cart/checkout_email.html').render(
+                        {'user_data': user_data,
+                         'products': products}),
+                    'html'))
 
             server.sendmail(adrian_settings.EMAIL_HOST_USER, cart_settings.StoreCartConfig.checkout_emails, msg.as_string())
             server.quit()

@@ -2,7 +2,7 @@
     products - cart.models.ProductsList
 {% endcomment %}
 
-<table class="cart-products">
+<table class="cart-products" border="1">
     <thead>
     <tr>
         <th>Имя</th>
@@ -14,7 +14,8 @@
     {% load money_tags %}
     {% for prod in products %}
         <tr>
-            <td>{{ prod.modification.item.name }} {{ prod.modification.name }}</td>
+            {% load catalog_tags %}
+            <td><a href="{% url_modification prod.modification %}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a></td>
             <td>{{ prod.price|print_price }} {{ prod.unit }}</td>
             <td>{{ prod.count }}</td>
             <td>{{ prod.total_price|print_price }} {{ prod.unit }}</td>

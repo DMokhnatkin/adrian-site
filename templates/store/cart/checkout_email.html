@@ -1,5 +1,9 @@
 
-<table border="1">
+<div>
+    {% load cart_tags %}
+    {% render_full_cart products false %}
+    <br>
+    <table border="1">
     {% for field_name, field_value in user_data.items %}
         <tr>
             <td style="padding: 10px"><p>{{ field_name }}</p></td>
@@ -7,3 +11,4 @@
         </tr>
     {% endfor %}
 </table>
+</div>
