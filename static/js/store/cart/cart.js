@@ -9,8 +9,17 @@ $(document).ready(function(){
         setCountInCart(prodId, getCountInCart(prodId) + 1);
         return false;
     });
-    
-    // Add logic for preview toolbox buttons
+
+    // Add logic for remove-from-cart buttons
+    $(document).on('cartPreviewLoaded', function () {
+        $('a.remove-from-cart').click(function () {
+            var prodId = this.id.substr(3);
+            removeFromCart(prodId);
+            return false;
+        });
+    });
+
+    // Add logic for toolbox buttons
     $(document).on('cartPreviewLoaded', function () {
         $('a.clear-cart').click(function () {
             if (confirm('Очистить корзину?'))
@@ -57,6 +66,14 @@ function setCountInCart(productId, count) {
     var prods = getProdsInCart();
     prods = (prods) ? prods : {};
     prods[productId] = count;
+    Cookies.set(cartCookieName, prods, { expires: 30 });
+    $(document).trigger('cartChanged');
+}
+
+function removeFromCart(productId) {
+    var prods = getProdsInCart();
+    prods = (prods) ? prods : {};
+    delete prods[productId];
     Cookies.set(cartCookieName, prods, { expires: 30 });
     $(document).trigger('cartChanged');
 }
