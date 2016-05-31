@@ -1,4 +1,5 @@
 from decimal import *
+from store.cart.models import ProductsCart
 
 from django import template
 register = template.Library()
@@ -12,3 +13,8 @@ def render_full_cart(cart, render_toolbox=True):
 def render_preview_cart(cart, render_toolbox=True):
     return {'products': cart,
             'render_toolbox': render_toolbox}
+
+
+@register.assignment_tag
+def get_prod_cart(request):
+    return ProductsCart.parse_from_request(request)

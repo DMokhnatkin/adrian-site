@@ -7,13 +7,11 @@ from store.cart import forms
 from store.cart import apps as cart_settings
 from adrian import settings as adrian_settings
 from django.template.loader import get_template
-from django.views.decorators import cache
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
 
-@cache.never_cache
 def cart_preview(request):
     if request.method == 'GET' and request.is_ajax():
         products = cart_models.ProductsCart.parse_from_request(request)
@@ -23,7 +21,6 @@ def cart_preview(request):
     return HttpResponseForbidden(request)
 
 
-@cache.never_cache
 def cart_checkout(request):
     products = cart_models.ProductsCart.parse_from_request(request)
     if request.method == 'POST':

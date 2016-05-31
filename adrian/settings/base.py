@@ -21,7 +21,8 @@ INSTALLED_APPS = [
 	'user_profile',
 	'slideshows',
     'captcha',
-    'phonenumber_field'
+    'phonenumber_field',
+    'maintenancemode',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -31,6 +32,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'maintenancemode.middleware.MaintenanceModeMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -124,3 +126,8 @@ RECAPTCHA_USE_SSL = True
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'RU'
+
+MAINTENANCE_MODE = False
+MAINTENANCE_IGNORE_URLS = (
+    r'^/admin/.*',
+)

@@ -35,6 +35,7 @@
     {% if render_cart %}
         <div id='cart-preview-block' class="item">
             {% load cart_tags %}
+            {% get_prod_cart request as products %}
             {% render_preview_cart products %}
         </div>
     {% endif %}
