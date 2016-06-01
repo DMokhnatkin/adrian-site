@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 class AdrianConfig(AppConfig):
-    name = 'adrian.settings'
+    name = 'conf.settings'
     label = 'settings'

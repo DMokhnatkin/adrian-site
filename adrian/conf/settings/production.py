@@ -1,4 +1,4 @@
-from adrian.settings.base import *
+from conf.settings.base import *
 
 DEBUG = False
 ALLOWED_HOSTS = ['adrian-perm.ru']

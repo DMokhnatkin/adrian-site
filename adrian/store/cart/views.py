@@ -5,7 +5,7 @@ from store.catalog import models as catalog_models
 from store.cart import models as cart_models
 from store.cart import forms
 from store.cart import apps as cart_settings
-from adrian import settings as adrian_settings
+from conf import settings as adrian_settings
 from django.template.loader import get_template
 
 from email.mime.text import MIMEText

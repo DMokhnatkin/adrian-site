@@ -39,7 +39,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.cache.FetchFromCacheMiddleware'
 ]
 
-ROOT_URLCONF = 'adrian.urls'
+ROOT_URLCONF = 'conf.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'adrian.wsgi.application'
+WSGI_APPLICATION = 'conf.wsgi.application'
 
 DATABASES = {
     'default': {
