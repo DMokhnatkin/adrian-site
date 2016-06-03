@@ -1,8 +1,9 @@
 __author__ = 'Dmitriy'
 
-from store.catalog import models as store_models
 from django import template
 from django.core import urlresolvers
+
+from store.catalog import models as store_models
 
 register = template.Library()
 

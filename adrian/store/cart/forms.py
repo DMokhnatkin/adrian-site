@@ -1,8 +1,10 @@
-from django import forms
 from captcha.fields import ReCaptchaField
-from phonenumber_field.formfields import PhoneNumberField
+from django import forms
 from django.utils.safestring import mark_safe
+from phonenumber_field.formfields import PhoneNumberField
+
 from store.cart import widgets
+
 
 class CheckoutForm(forms.Form):
     address = forms.CharField(label='Адрес', max_length=100, widget=widgets.AddressWidget())

@@ -1,9 +1,9 @@
 __author__ = 'Dmitriy'
-from django.db import models
-from django.dispatch import receiver
-from django.db.models import signals
-from easy_thumbnails.fields import ThumbnailerImageField
 from django.core import validators
+from django.db import models
+from django.db.models import signals
+from django.dispatch import receiver
+from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class Category(models.Model):

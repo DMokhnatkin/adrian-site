@@ -1,6 +1,6 @@
-from user_profile import models as user_profile_models
 from django import template
 
+from user_profile import models as user_profile_models
 
 register = template.Library()
 

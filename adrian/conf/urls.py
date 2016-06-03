@@ -1,7 +1,8 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from contacts import views as contacts_views
 from django.views.generic import TemplateView
+
+from contacts import views as contacts_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

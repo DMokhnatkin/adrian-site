@@ -1,7 +1,8 @@
 __author__ = 'Dmitriy'
-from django.contrib import admin
-from store.catalog import models
 from django import forms
+from django.contrib import admin
+
+from store.catalog import models
 
 
 class CharacteristicForm(forms.ModelForm):

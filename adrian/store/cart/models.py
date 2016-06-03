@@ -1,9 +1,11 @@
-from django.db import models
-from decimal import *
 import collections
-from store.catalog.models import Modification
-from urllib import parse
 import json
+from decimal import *
+from urllib import parse
+
+from django.db import models
+
+from store.catalog.models import Modification
 
 
 def get_price(modification):

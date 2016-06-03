@@ -1,7 +1,7 @@
 __author__ = 'Dmitriy'
 from django.conf.urls import patterns, url
-from django.views.decorators.cache import never_cache
 from django.conf.urls.static import static
+from django.views.decorators.cache import never_cache
 
 from store.cart import views
 

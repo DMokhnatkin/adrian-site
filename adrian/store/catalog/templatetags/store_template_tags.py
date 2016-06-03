@@ -1,7 +1,8 @@
 __author__ = 'Dmitriy'
 
-from store.catalog import models as store_models
 from django import template
+
+from store.catalog import models as store_models
 
 register = template.Library()
 

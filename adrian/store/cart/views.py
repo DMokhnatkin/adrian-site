@@ -1,16 +1,18 @@
-from django.shortcuts import render
+import smtplib
 from decimal import *
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 from django.conf import settings
-from store.catalog import models as catalog_models
-from store.cart import models as cart_models
-from store.cart import forms
-from store.cart import apps as cart_settings
-from conf import settings as adrian_settings
+from django.shortcuts import render
 from django.template.loader import get_template
 
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import smtplib
+from conf import settings as adrian_settings
+from store.cart import apps as cart_settings
+from store.cart import models as cart_models
+from store.cart import forms
+from store.catalog import models as catalog_models
+
 
 def cart_preview(request):
     if request.method == 'GET' and request.is_ajax():

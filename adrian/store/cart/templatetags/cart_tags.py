@@ -1,7 +1,9 @@
 from decimal import *
-from store.cart.models import ProductsCart
 
 from django import template
+
+from store.cart.models import ProductsCart
+
 register = template.Library()
 
 @register.inclusion_tag('store/cart/render_cart/full.html')

@@ -1,10 +1,10 @@
 __author__ = 'Dmitriy'
 
-from user_profile import models as user_profile_models
 from django import template
-from slideshows import models
-from django.template import loader, Context
+from django.template import Context, loader
 
+from slideshows import models
+from user_profile import models as user_profile_models
 
 register = template.Library()
 

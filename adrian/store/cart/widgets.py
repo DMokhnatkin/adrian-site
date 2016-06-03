@@ -1,5 +1,6 @@
 from django import forms
 
+
 class AddressWidget(forms.TextInput):
     class Media:
         js = ('js/store/cart/address_widget.js',

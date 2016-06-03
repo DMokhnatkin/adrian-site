@@ -1,11 +1,27 @@
-# Base settings. Common for debug and production sites.
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kn9x6*pxvfb63ka2$p@yqub46*g%b3cdvp%qm@*&kc&kg^^#1'
-
+import json
 import os
+
+from django.core.exceptions import ImproperlyConfigured
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.realpath(os.path.dirname(__file__) + "/.."))
+
+
+# JSON-based secrets module
+with open(os.path.join(BASE_DIR, "conf/settings/secrets.json")) as f:
+    secrets = json.loads(f.read())
+
+
+def get_secret(setting, secrets=secrets):
+    """Get the secret variable"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the {0} secret variable'.format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret('SECRET_KEY')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,8 +34,8 @@ INSTALLED_APPS = [
     'store.cart',
     'easy_thumbnails',
     'contacts',
-	'user_profile',
-	'slideshows',
+    'user_profile',
+    'slideshows',
     'captcha',
     'phonenumber_field',
     'maintenancemode',
@@ -63,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'adrian',
-		'USER': 'adrian',
-		'PASSWORD': '7780ba372d99cedf3f91ee93a7155452',
+        'USER': get_secret('DATABASE_USER'),
+        'PASSWORD': get_secret('DATABASE_PASSWORD'),
     }
 }
 
@@ -108,7 +124,7 @@ THUMBNAIL_ALIASES = {
     '': {
         'item_page': {'size': (300, 300), 'crop': True},
         'item_in_catalog': {'size': (200, 200), 'crop': True},
-		'slideshow': {'size': (700, 530), 'crop': True}
+        'slideshow': {'size': (700, 530), 'crop': True}
     },
 }
 
@@ -116,11 +132,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'adrian.perm.ru@gmail.com'
-EMAIL_HOST_PASSWORD = '2xqMqAaL0XuMT6FRYyEO'
+EMAIL_HOST_PASSWORD = get_secret('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
 RECAPTCHA_PUBLIC_KEY = '6LdaMx8TAAAAAIsIWfBvG50bn1M3z__3TbvDEMhQ'
-RECAPTCHA_PRIVATE_KEY = '6LdaMx8TAAAAADj5DI-IT5igldAFv_KSS0m29y6U'
+RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY')
 NOCAPTCHA = True
 RECAPTCHA_USE_SSL = True
 

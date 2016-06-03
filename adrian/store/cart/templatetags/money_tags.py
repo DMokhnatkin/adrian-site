@@ -1,9 +1,10 @@
+import locale
 from decimal import *
 
-import locale
+from django import template
+
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
-from django import template
 register = template.Library()
 
 @register.filter(name='print_price')

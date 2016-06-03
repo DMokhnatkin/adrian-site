@@ -1,6 +1,7 @@
 __author__ = 'Dmitriy'
 
 from django.contrib import admin
+
 from slideshows import models
 
 

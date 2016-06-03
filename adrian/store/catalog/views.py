@@ -1,10 +1,9 @@
 __author__ = 'Dmitriy'
+from django.apps import apps
 from django.http import HttpResponse
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.apps import apps
 
 from store.catalog import models
 
@@ -59,4 +58,5 @@ class ItemDetailView(DetailView):
         context['modifications'] = item.modifications
         context['selected_modifications'] = self.request.GET.getlist('modification')
         context['render_cart'] = apps.is_installed('store.cart')
+        raise BaseException()
         return context
