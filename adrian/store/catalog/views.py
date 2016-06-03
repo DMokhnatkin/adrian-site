@@ -58,5 +58,4 @@ class ItemDetailView(DetailView):
         context['modifications'] = item.modifications
         context['selected_modifications'] = self.request.GET.getlist('modification')
         context['render_cart'] = apps.is_installed('store.cart')
-        raise BaseException()
         return context
