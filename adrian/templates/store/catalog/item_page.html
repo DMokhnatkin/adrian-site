@@ -57,28 +57,31 @@
                 <thead>
                     <tr>
                         <th></th>
-                        {% for modif in modifications %}
-                            {% if modif.id|stringformat:'s' in selected_modifications %}
-                                <td class="selected">{{ modif.name }}</td>
+                        {% for header in table.modifications %}
+                            {% if header.id|stringformat:'s' in selected_modifications %}
+                                <td class="selected">{{ header.name }}</td>
                             {% else %}
-                                <td>{{ modif.name }}</td>
+                                <td>{{ header.name }}</td>
                             {% endif %}
                         {% endfor %}
                     </tr>
                 </thead>
                 <tbody>
-                    {% for key, values in characteristic_table_data.characteristics.items %}
-                        <tr title="{{ key }}">
-                            <th>{{ key }}</th>
-                            {% for val in values %}
-                                <td>{{ val }}</td>
-                            {% endfor %}
-                        </tr>
+                    {% for field_type in table.field_types %}
+                        {% load catalog_tags %}
+                        {% if table.values|index:forloop.counter0 %}
+                            <tr>
+                                <th>{{ field_type.title }}</th>
+                                {% for val in table.values|index:forloop.counter0 %}
+                                    <td>{{ val.value }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                     {% if render_cart %}
                         <tr class="add-to-cart-buttons">
-                        <th></th>
-                            {% for modif in modifications %}
+                            <th></th>
+                            {% for modif in table.modifications %}
                                 <td><a href="#" id="bt-{{ modif.id }}" class="simple-button add-to-cart">В корзину</a></td>
                             {% endfor %}
                         </tr>

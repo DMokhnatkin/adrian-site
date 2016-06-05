@@ -15,3 +15,8 @@ def url_modification(modification, specify_in_get = True):
     if specify_in_get:
         url += '?modification=' + str(modification.id)
     return url
+
+
+@register.filter
+def index(List, i):
+    return List[int(i)]

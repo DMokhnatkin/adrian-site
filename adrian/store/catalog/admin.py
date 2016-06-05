@@ -53,7 +53,8 @@ class ItemAdmin(admin.ModelAdmin):
 
 class FieldTypeInLine(admin.StackedInline):
     model = models.FieldType
-    extra = 1
+    ordering = ('priority',)
+    extra = 0
 
 
 class CategoryAdmin(admin.ModelAdmin):

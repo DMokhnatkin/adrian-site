@@ -7,7 +7,10 @@ from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50, unique='true')
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Название категории',
+        unique='true')
 
     def __str__(self):
         return self.name
@@ -17,9 +20,17 @@ class Category(models.Model):
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=50, unique='true')
-    description = models.TextField()
-    category = models.ForeignKey(Category)
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Имя',
+        unique='true')
+    description = models.TextField(
+        verbose_name='Описание'
+    )
+    category = models.ForeignKey(
+        Category,
+        verbose_name='Категория'
+    )
 
     def __str__(self):
         return self.name
@@ -34,7 +45,11 @@ class Item(models.Model):
 
 class ItemImage(models.Model):
     item = models.ForeignKey(Item)
-    image = ThumbnailerImageField(upload_to='images/store',  validators=[validators.RegexValidator(regex=r'^[\x00-\x7F]+$', message="Only ascii characters can be used")])
+    image = ThumbnailerImageField(
+        upload_to='images/store',
+        validators=[validators.RegexValidator(
+            regex=r'^[\x00-\x7F]+$',
+            message="Only ascii characters can be used")])
 
 
 class Modification(models.Model):
@@ -67,14 +82,29 @@ def constructor_modification(instance, **kwargs):
 
 # Type of field
 class FieldType(models.Model):
-    name = models.CharField(max_length=50, validators=[validators.RegexValidator(regex=r'^[a-zA-Z0-9_]+$', message="Only ascii characters can be used")])
-    title = models.CharField(max_length=50)
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Системное имя',
+        validators=[validators.RegexValidator(
+            regex=r'^[a-zA-Z0-9_]+$',
+            message="Only ascii characters can be used")])
+    title = models.CharField(
+        max_length=50,
+        verbose_name='Имя')
     category = models.ForeignKey(Category)
     typeName = models.CharField('type', max_length=50, choices=(
         ('integer', 'Int'),
         ('string', 'String'),
-        ('float', 'Float')))
-    unit = models.CharField(max_length=30, null=True, blank=True)
+        ('float', 'Float')),
+        default=True)
+    unit = models.CharField(
+        max_length=30,
+        verbose_name='Единицы измерения',
+        null=True,
+        blank=True)
+    priority = models.IntegerField(
+        default=0,
+        verbose_name='Приоритет')
 
     def __str__(self):
         return self.category.name + ' - ' + self.title
@@ -117,7 +147,10 @@ def constructor_fieldtype(instance, **kwargs):
 class Characteristic(models.Model):
     modification = models.ForeignKey(Modification)
     field_type = models.ForeignKey(FieldType)
-    value = models.CharField(max_length=5000, null=True)
+    value = models.CharField(
+        max_length=5000,
+        null=True,
+        verbose_name='Значение')
 
     def __str__(self):
         return self.field_type.name
@@ -131,5 +164,8 @@ class Characteristic(models.Model):
 
 # Price for catalog
 class Price(models.Model):
-    file = models.FileField(upload_to='files')
-    label = models.CharField(max_length=50, default="")
+    file = models.FileField(
+        upload_to='files')
+    label = models.CharField(
+        max_length=50,
+        default="")
