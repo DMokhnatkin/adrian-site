@@ -20,3 +20,8 @@ def url_modification(modification, specify_in_get = True):
 @register.filter
 def index(List, i):
     return List[int(i)]
+
+
+@register.inclusion_tag('store/template_tags/print_characteristic.html')
+def print_characteristic(characteristic):
+    return {'characteristic' : characteristic}

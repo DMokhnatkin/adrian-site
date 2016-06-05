@@ -73,7 +73,7 @@
                             <tr>
                                 <th>{{ field_type.title }}</th>
                                 {% for val in table.values|index:forloop.counter0 %}
-                                    <td>{{ val.value }}</td>
+                                    <td>{% print_characteristic val %}</td>
                                 {% endfor %}
                             </tr>
                         {% endif %}

@@ -120,14 +120,6 @@ class FieldType(models.Model):
             return str
         return None
 
-    # Return list of all found values
-    def get_av_values(self):
-        vals = set
-        for characteristic in self.characteristic_set.all():
-            if characteristic.value not in vals:
-                vals.add(characteristic.value)
-        return list(vals)
-
 
 # After FieldType creation we must create characteristic and set null value
 # for all modifications which are in the same category as FieldType.
