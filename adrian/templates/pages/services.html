@@ -17,7 +17,8 @@
 
 {% block sidebar_left %}
     <div class="item">
-        {% include 'menus/menu_catalog.html' %}
+        {% load catalog_tags %}
+        {% print_catalog_menu %}
     </div>
 {% endblock %}
 

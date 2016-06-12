@@ -27,13 +27,14 @@
 
 {% block sidebar_left %}
     <div class="item">
-        {% include 'menus/menu_catalog.html' %}
+        {% load catalog_tags %}
+        {% print_catalog_menu %}
     </div>
 {% endblock %}
 
 {% block content %}
     <div style="text-align: left; margin-bottom: 20px;">
-        <h1 id="content-title" class="underlined_bottom">Оформить заказ</h1>
+        <h1 id="content-title">Оформить заказ</h1>
         {{ test }}
         <table class="cart-products">
             <thead>

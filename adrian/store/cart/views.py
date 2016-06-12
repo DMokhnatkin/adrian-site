@@ -9,14 +9,14 @@ from django.template.loader import get_template
 
 from conf import settings as adrian_settings
 from store.cart import apps as cart_settings
-from store.cart import models as cart_models
+from . import utils
 from store.cart import forms
 from store.catalog import models as catalog_models
 
 
 def cart_preview(request):
     if request.method == 'GET' and request.is_ajax():
-        products = cart_models.ProductsCart.parse_from_request(request)
+        products = utils.ProductsCart.parse_from_request(request)
         return render(request, 'store/cart/render_cart/preview.html',
                       {'products': products,
                        'render_toolbox': True})
@@ -24,7 +24,7 @@ def cart_preview(request):
 
 
 def cart_checkout(request):
-    products = cart_models.ProductsCart.parse_from_request(request)
+    products = utils.ProductsCart.parse_from_request(request)
     if request.method == 'POST':
         form = forms.CheckoutForm(request.POST)
         if form.is_valid():

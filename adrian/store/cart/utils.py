@@ -44,9 +44,12 @@ class ProductsCart:
         cookies = request.COOKIES.get(ProductsCart.cookie_name)
         if not cookies:
             return ProductsCart()
-        products_in_cookies = json.loads(parse.unquote(cookies))
+
+        products_in_cookies = json.loads(
+            parse.unquote(cookies),
+            object_pairs_hook=collections.OrderedDict)
         if products_in_cookies:
-            return ProductsCart(source=products_in_cookies.items())
+            return ProductsCart(source=products_in_cookies)
         else:
             return ProductsCart()
 
@@ -55,28 +58,26 @@ class ProductsCart:
         response.delete_cookie(ProductsCart.cookie_name)
 
     def __init__(self, source=None, **kwargs):
-        '''
+        """
         :param source: Source to initialize
-        :type source: Iterable, each cell of which is ('modification id', 'count in cart')
-        '''
+        :type source: OrderedDict, keys are modification id, values are count in cart
+        """
         self.products = []
-        self.bad_products = [] # Products which are missing in database (maybe removed)
         self.total_price = Decimal(0)
+        self.prod_count = 0
         if source is not None:
-            for mod_id, ct in source:
-                mod = Modification.objects.get(id=mod_id)
-                if mod is None:
-                    self.bad_products.append({'id': mod_id, 'ct': ct})
-                else:
-                    self.add_product(Product(mod, ct))
+            mdfs = Modification.objects.filter(pk__in=source.keys())
+            for mod in mdfs:
+                self.add_product(Product(mod, source[str(mod.id)]))
 
     def add_product(self, product):
-        '''
+        """
         Add product to cart and recalculate total_price
         :type product: Product
-        '''
+        """
         self.products.append(product)
         self.total_price += product.total_price
+        self.prod_count += product.count
 
     def get_total_price_unit(self):
         if len(self.products) > 0:
@@ -88,7 +89,7 @@ class ProductsCart:
         return iter(self.products)
 
     def __len__(self):
-        return len(self.products)
+        return self.prod_count
 
     def __nonzero__(self):
         return self.products.__nonzero__()

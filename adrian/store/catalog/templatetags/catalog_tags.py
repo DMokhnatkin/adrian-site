@@ -18,10 +18,15 @@ def url_modification(modification, specify_in_get = True):
 
 
 @register.filter
-def index(List, i):
-    return List[int(i)]
+def index(lst, i):
+    return lst[int(i)]
 
 
 @register.inclusion_tag('store/template_tags/print_characteristic.html')
 def print_characteristic(characteristic):
-    return {'characteristic' : characteristic}
+    return {'characteristic': characteristic}
+
+
+@register.inclusion_tag('store/template_tags/catalog_menu.html')
+def print_catalog_menu():
+    return {'categories': store_models.Category.objects.all()}

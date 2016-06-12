@@ -1,0 +1,9 @@
+{% comment %}
+    item - item to print
+{% endcomment %}
+
+<div class="item_in_catalog">
+    <a href="{% url 'item_page' item.id %}" class="item_in_catalog"></a>
+    <h3>{{ item.name }}</h3>
+    <img src="{{ item.main_image.image|thumbnail_url:'item_in_catalog' }}" />
+</div>

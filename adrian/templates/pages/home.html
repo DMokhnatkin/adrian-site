@@ -17,13 +17,14 @@
 
 {% block sidebar_left %}
     <div class="item">
-        {% include 'menus/menu_catalog.html' %}
+        {% load catalog_tags %}
+        {% print_catalog_menu %}
     </div>
 {% endblock %}
 
 {% block content %}
     {% load slideshows_tags %}
-    <div class="padding_20 margin_10 color3_background dark_border" style="display: inline-block; ">
+    <div id="slideshow">
         {% render_slideshow 'main' %}
     </div>
 {% endblock %}

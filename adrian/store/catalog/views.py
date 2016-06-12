@@ -18,7 +18,7 @@ class ItemListView(ListView):
 
     def get_queryset(self):
         self.category = models.Category.objects.get(pk=self.kwargs['category_id'])
-        return models.Item.objects.filter(category=self.category)
+        return models.Item.objects.filter(category=self.category).prefetch_related('itemimage_set')
 
     def get_context_data(self, **kwargs):
         context = super(ItemListView, self).get_context_data(**kwargs)
@@ -38,9 +38,8 @@ class ItemDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ItemDetailView, self).get_context_data(**kwargs)
         item = self.object
-        table = utils.CharacteristicsTable(item)
         context['item'] = item
-        context['table'] = table
+        context['table'] = utils.CharacteristicsTable(item)
         context['selected_modifications'] = self.request.GET.getlist('modification')
         context['render_cart'] = apps.is_installed('store.cart')
         return context

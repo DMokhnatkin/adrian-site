@@ -44,6 +44,14 @@ $(document).ready(function(){
             }
         });
     });
+
+    // Change in cart count when cart is changed
+    $(document).on('cartChanged', function () {
+        $('.count-val').each(function () {
+            $(this).html(getCountInCart($(this).attr('id').substr(4)));
+        });
+    });
+
     $(document).trigger('cartChanged');
 });
 

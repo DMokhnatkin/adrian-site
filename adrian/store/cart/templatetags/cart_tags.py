@@ -2,7 +2,7 @@ from decimal import *
 
 from django import template
 
-from store.cart.models import ProductsCart
+from store.cart.utils import ProductsCart
 
 register = template.Library()
 

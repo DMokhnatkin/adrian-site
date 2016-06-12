@@ -3,7 +3,9 @@
     characteristic - Characteristic model
 {% endcomment %}
 
-<span>{{ characteristic.value }}</span>
+{% if characteristic.value %}
+    <span>{{ characteristic.value }}</span>
+{% endif %}
 {% if characteristic.field_type.unit %}
     <span>{{ characteristic.field_type.unit }}</span>
 {% endif %}

@@ -1,11 +1,13 @@
+{% comment %}
+    categories - categories to render
+{% endcomment %}
+
 
 <div id="menu_catalog" class="large">
-    <div class="title padding_left_10 underlined_bottom">
+    <div class="title">
         <h3>Каталог</h3>
     </div>
-    <ul class="padding_left_10">
-        {% load store_template_tags %}
-        {% get_categories as categories %}
+    <ul>
         {% for categ in categories %}
             <li><a href="{% url 'items_in_category' categ.id %}" class="simple-link">{{ categ.name }}</a></li>
         {% endfor %}

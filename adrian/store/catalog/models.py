@@ -25,12 +25,10 @@ class Item(models.Model):
         verbose_name='Имя',
         unique='true')
     description = models.TextField(
-        verbose_name='Описание'
-    )
+        verbose_name='Описание')
     category = models.ForeignKey(
         Category,
-        verbose_name='Категория'
-    )
+        verbose_name='Категория')
 
     def __str__(self):
         return self.name

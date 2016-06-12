@@ -10,6 +10,15 @@ def get_field_types(category, sort_by_priority=False):
     return models.FieldType.objects.filter(category=category).order_by('priority')
 
 
+def get_field_type(category, field_type_name):
+    """
+    Get field type assosiated with some category and with specified name
+    :param category: Category
+    :param field_type_name: Name of field_type
+    """
+    return models.FieldType.objects.get(category=category, name=field_type_name)
+
+
 def get_modifications(item):
     """
     Get modifications for item
@@ -45,3 +54,7 @@ class CharacteristicsTable:
                 self.values.append(get_values(field_type, self.modifications))
             else:
                 self.values.append(None)
+
+
+def get_prices(item):
+    return get_values()

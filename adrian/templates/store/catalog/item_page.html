@@ -26,7 +26,8 @@
 
 {% block sidebar_left %}
     <div class="item">
-        {% include 'menus/menu_catalog.html' %}
+        {% load catalog_tags %}
+        {% print_catalog_menu %}
     </div>
     {% if render_cart %}
         <div id='cart-preview-block' class="item">
@@ -42,7 +43,7 @@
         <a href="{% url 'items_in_category' item.category.id %}"> {{ item.category.name }} </a> >> {{ item.name }}
     </div>
     <div style="text-align: left; margin-bottom: 20px;">
-        <h1 class="underlined_bottom" style="display: inline-block; margin-left: 0; padding-left: 10px; ">{{ item.name }}</h1>
+        <h1 style="display: inline-block; margin-left: 0; padding-left: 10px; ">{{ item.name }}</h1>
     </div>
     <div id = "item" style="margin: 10px; ">
         {% load thumbnail %}
@@ -73,7 +74,9 @@
                             <tr>
                                 <th>{{ field_type.title }}</th>
                                 {% for val in table.values|index:forloop.counter0 %}
-                                    <td>{% print_characteristic val %}</td>
+                                    <td {% if val.modification.id|stringformat:'s' in selected_modifications %} class="selected" {% endif %}>
+                                        {% print_characteristic val %}
+                                    </td>
                                 {% endfor %}
                             </tr>
                         {% endif %}
@@ -82,7 +85,17 @@
                         <tr class="add-to-cart-buttons">
                             <th></th>
                             {% for modif in table.modifications %}
-                                <td><a href="#" id="bt-{{ modif.id }}" class="simple-button add-to-cart">В корзину</a></td>
+                                <td {% if modif.id|stringformat:'s' in selected_modifications %} class="selected" {% endif %}>
+                                    <a href="#" id="bt-{{ modif.id }}" class="simple-button add-to-cart">
+                                        <div class="text">
+                                            <p>В корзину</p>
+                                        </div>
+                                        <div class="count">
+                                            (<span id="mod-{{ modif.id }}" class="count-val">0</span>)
+                                        </div>
+                                    </a>
+                                    <span class="count-in-cart"></span>
+                                </td>
                             {% endfor %}
                         </tr>
                     {% endif %}

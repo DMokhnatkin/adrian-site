@@ -30,7 +30,8 @@
 
 {% block sidebar_left %}
     <div class="item">
-        {% include 'menus/menu_catalog.html' %}
+        {% load catalog_tags %}
+        {% print_catalog_menu %}
     </div>
     {% if render_cart %}
         <div id='cart-preview-block' class="item">
@@ -43,7 +44,7 @@
 
 {% block content %}
     <div style="text-align: left;">
-        <h1 class="underlined_bottom" style="display: inline-block; padding-left: 10px; margin-left: 0px; ">{{ category.name }}</h1>
+        <h1>{{ category.name }}</h1>
     </div>
     <div id="content_body">
         <div id="items_in_catalog_table">
