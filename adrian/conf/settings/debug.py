@@ -33,3 +33,5 @@ LOGGING = {
     },
 }
 
+CHECKOUT_EMAILS = ['paparome@ya.ru']
+
