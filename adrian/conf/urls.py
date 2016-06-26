@@ -1,6 +1,9 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
 
 from contacts import views as contacts_views
 
@@ -30,4 +33,5 @@ urlpatterns = [
         r'^$',
         TemplateView.as_view(template_name='pages/home.html'),
         name='home'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

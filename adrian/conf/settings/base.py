@@ -75,14 +75,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'conf.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'adrian',
-        'USER': get_secret('DATABASE_USER'),
-        'PASSWORD': get_secret('DATABASE_PASSWORD'),
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -114,7 +106,11 @@ CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/'),
+]
 
 MEDIA_URL = '/media/'
 

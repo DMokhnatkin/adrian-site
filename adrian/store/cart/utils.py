@@ -1,9 +1,14 @@
 import collections
 import json
+import smtplib
 from decimal import *
 from urllib import parse
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 from django.db import models
+from django.conf import settings
+from django.template import loader
 
 from store.catalog.models import Modification
 
@@ -93,3 +98,28 @@ class ProductsCart:
 
     def __nonzero__(self):
         return self.products.__nonzero__()
+
+
+def notify_about_checkout(user_data, products):
+    """
+    Notify staff about checkout
+    :param user_data: Info about user (from checkout form)
+    :param products: ProductsCart
+    """
+    if type(products) is not ProductsCart:
+        raise TypeError('products must be instance of ProductsCart')
+    server = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
+    server.ehlo()
+    server.starttls()
+    server.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+    msg = MIMEMultipart()
+    msg['Subject'] = 'Заказ на сайте'
+    msg['From'] = 'adrian-perm.ru'
+    msg.attach(
+        MIMEText(
+            loader.get_template('store/cart/checkout/checkout_email.html').render(
+                {'user_data': user_data,
+                 'products': products}),
+            'html'))
+    server.sendmail(settings.EMAIL_HOST_USER, settings.CHECKOUT_EMAILS, msg.as_string())
+    server.quit()

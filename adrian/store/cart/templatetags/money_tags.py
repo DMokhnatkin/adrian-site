@@ -3,9 +3,11 @@ from decimal import *
 
 from django import template
 
-locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+from django.conf import settings
 
+locale.setlocale(locale.LC_ALL, settings.LANGUAGE_CODE)
 register = template.Library()
+
 
 @register.filter(name='print_price')
 def print_price(val):
