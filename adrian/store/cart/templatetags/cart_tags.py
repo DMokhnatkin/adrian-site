@@ -2,7 +2,7 @@ from decimal import *
 
 from django import template
 
-from store.cart.utils import ProductsCart
+from store.cart.utils import Cart
 
 register = template.Library()
 
@@ -19,4 +19,4 @@ def render_preview_cart(cart, render_toolbox=True):
 
 @register.assignment_tag
 def get_prod_cart(request):
-    return ProductsCart.parse_from_request(request)
+    return Cart.parse_from_request(request)

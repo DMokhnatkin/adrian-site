@@ -11,4 +11,7 @@ register = template.Library()
 
 @register.filter(name='print_price')
 def print_price(val):
-    return locale.format("%d", Decimal(val), grouping=True)
+    try:
+        return locale.format("%d", Decimal(val), grouping=True)
+    except:
+        return '_'

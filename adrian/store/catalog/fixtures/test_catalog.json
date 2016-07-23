@@ -1,0 +1,118 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "category 1"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "category 2"
+    }
+  },
+  {
+    "model": "catalog.item",
+    "pk": 1,
+    "fields": {
+      "name": "test item 1",
+      "description": "test description 1",
+      "category": 1
+    }
+  },
+  {
+    "model": "catalog.item",
+    "pk": 2,
+    "fields": {
+      "name": "test item 2",
+      "description": "test description 2",
+      "category": 1
+    }
+  },
+  {
+    "model": "catalog.item",
+    "pk": 3,
+    "fields": {
+      "name": "test item 3",
+      "description": "test description 3",
+      "category": 2
+    }
+  },
+  {
+    "model": "catalog.fieldtype",
+    "pk": 1,
+    "fields": {
+      "name": "price",
+      "title": "price",
+      "category": 1,
+      "typeName": "integer",
+      "unit": "руб",
+      "priority": 0
+    }
+  },
+  {
+    "model": "catalog.fieldtype",
+    "pk": 2,
+    "fields": {
+      "name": "price",
+      "title": "price",
+      "category": 2,
+      "typeName": "integer",
+      "unit": "руб",
+      "priority": 0
+    }
+  },
+  {
+    "model": "catalog.modification",
+    "pk": 1,
+    "fields": {
+      "name": "test modification 1",
+      "item": 1
+    }
+  },
+  {
+    "model": "catalog.modification",
+    "pk": 2,
+    "fields": {
+      "name": "test modification 2",
+      "item": 1
+    }
+  },
+  {
+    "model": "catalog.modification",
+    "pk": 3,
+    "fields": {
+      "name": "test modification 3",
+      "item": 3
+    }
+  },
+  {
+    "model": "catalog.characteristic",
+    "pk": 1,
+    "fields": {
+      "modification": 1,
+      "field_type": 1,
+      "value": "78000"
+    }
+  },
+  {
+    "model": "catalog.characteristic",
+    "pk": 2,
+    "fields": {
+      "modification": 2,
+      "field_type": 1,
+      "value": "11000"
+    }
+  },
+  {
+    "model": "catalog.characteristic",
+    "pk": 3,
+    "fields": {
+      "modification": 3,
+      "field_type": 2,
+      "value": "7000"
+    }
+  }
+]

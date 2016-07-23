@@ -27,11 +27,26 @@ def get_modifications(item):
     return models.Modification.objects.filter(item=item)
 
 
+def get_value(modification, field_type):
+    """
+    Get value for specified field of modification
+    :param modification: Modification
+    :param field_type:  Field type
+    :return:
+    """
+    try:
+        return models.Characteristic.objects.get(
+            field_type=field_type,
+            modification=modification)
+    except Exception:
+        return None
+
+
 def get_values(field_type, modifications):
     """
     Get field values
-    :param modification: Modifications to get values
-    :param field_types: Field type to get values
+    :param modifications: Modifications to get values
+    :param field_type: Field type to get values
     """
     return models.Characteristic.objects.filter(
         field_type=field_type,

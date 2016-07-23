@@ -12,7 +12,8 @@
             {% for prod in products %}
                 <li>
                     {% load catalog_tags %}
-                    <a href="{% url_modification prod.modification %}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a> ({{ prod.count }})
+                    <a href="{% url_modification prod.modification %}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a>
+                    ({{ prod.count }})
                     <p><span class="price">{{ prod.total_price|print_price  }}</span> <span class="price-unit">{{ prod.unit }}</span></p>
                     <a href="#" id="rm-{{ prod.modification.id }}" class="remove-from-cart">удалить</a>
                 </li>

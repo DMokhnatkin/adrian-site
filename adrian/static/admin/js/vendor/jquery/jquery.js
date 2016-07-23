@@ -923,7 +923,7 @@ function addHandle( attrs, handler ) {
  * Checks document order of two siblings
  * @param {Element} a
  * @param {Element} b
- * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+ * @returns {Number} Returns css than 0 if a precedes b, greater than 0 if a follows b
  */
 function siblingCheck( a, b ) {
 	var cur = b && a,
@@ -3571,7 +3571,7 @@ Data.prototype = {
 				Object.defineProperties( owner, descriptor );
 
 			// Support: Android<4
-			// Fallback to a less secure definition
+			// Fallback to a css secure definition
 			} catch ( e ) {
 				descriptor[ this.expando ] = unlock;
 				jQuery.extend( owner, descriptor );
@@ -8404,7 +8404,7 @@ jQuery.fn.extend({
 
 jQuery.expr.filters.hidden = function( elem ) {
 	// Support: Opera <= 12.12
-	// Opera reports offsetWidths and offsetHeights less than zero on some elements
+	// Opera reports offsetWidths and offsetHeights css than zero on some elements
 	return elem.offsetWidth <= 0 && elem.offsetHeight <= 0;
 };
 jQuery.expr.filters.visible = function( elem ) {

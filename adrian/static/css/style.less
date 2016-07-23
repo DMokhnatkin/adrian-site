@@ -1,24 +1,29 @@
-$color-1: #f7f0d4;
-$color-2: #c2c4bf;
-$color-3: #f9f9f9;
-$color-4: #85806d;
-$color-5: #E9DB94;
-$color-6: #A18E45;
-$color-7: #ac9f67;
-$color-8: #bbbbbb;
-$color-9: #dd4b39;
-$color-10: #f1f1f1;
-$color-11: #888;
-$color-13: #e4e4e4;
+@color-1: #f9f9f9;
+@color-2: #f1f1f1;
+@color-3: #e4e4e4;
+@color-4: #bbbbbb;
+@color-5: #888;
+@color-6: #f7f0d4;
+@color-7: #E9DB94;
+@color-8: #ac9f67;
+@color-9: #A18E45;
+@color-10: #85806d;
+@color-11: #dd4b39;
 
-@mixin underlined($direction) {
-  border-image-source: url("/static/adrian/images/strip.jpg");;
+
+.underlined(){
+  border-image-source: url("/static/adrian/images/strip.jpg");
   border-image-slice: 1;
-  @if $direction == 'top' {
-    border-image-width: 1px 0 0 0;
-  } @else if $direction == 'bottom'{
-    border-image-width: 0 0 1px 0;
-  }
+}
+
+.underlined_bottom{
+  .underlined();
+  border-image-width: 0 0 1px 0;
+}
+
+.underlined_top{
+  .underlined();
+  border-image-width: 1px 0 0 0;
 }
 
 .inline {
@@ -33,7 +38,7 @@ $color-13: #e4e4e4;
 }
 
 body {
-  background-color: $color-1;
+  background-color: @color-6;
 }
 
 #wrapper {
@@ -44,7 +49,7 @@ body {
 
 header {
   position: relative;
-  background-color: $color-1;
+  background-color: @color-6;
 }
 
 #sidebar_left {
@@ -52,16 +57,16 @@ header {
   float: left;
 
   div.item {
-    border-left: 1px solid $color-2;
-    border-bottom: 1px solid $color-2;
-    border-top: 1px solid $color-2;
+    border-left: 1px solid @color-4;
+    border-bottom: 1px solid @color-4;
+    border-top: 1px solid @color-4;
     margin-bottom: 20px;
-    background-color: $color-3;
+    background-color: @color-1;
     box-sizing: border-box;
     overflow: hidden;
 
     h3{
-      @include underlined('bottom');
+      .underlined_bottom;
       padding-left: 10px;
       margin-left: 0px;
       display: inline-block;
@@ -76,17 +81,17 @@ header {
 
 #content {
   margin-left: 300px;
-  border-top: 1px solid $color-4;
-  border-right: 1px solid $color-2;
-  border-bottom: 1px solid $color-2;
-  border-left: 1px solid $color-2;
+  border-top: 1px solid @color-10;
+  border-right: 1px solid @color-4;
+  border-bottom: 1px solid @color-4;
+  border-left: 1px solid @color-4;
   background-color: white;
 
   h1 {
     text-align: left;
     font-size: 30px;
     padding-left: 10px;
-    @include underlined('bottom');
+    .underlined_bottom;
   }
 }
 
@@ -114,20 +119,20 @@ button.simple-button{
   padding: 10px;
   margin: 2px;
   display: block;
-  background: $color-5;
+  background: @color-7;
   color: black;
   border: none;
   cursor: pointer;
 
   &:hover{
     cursor: pointer;
-    background-color: $color-6;
+    background-color: @color-9;
     color: white;
   }
 
   &.disabled{
     pointer-events: None;
-    background: $color-7;
+    background: @color-8;
   }
 }
 
@@ -135,7 +140,7 @@ a.simple-link{
   color: black;
 
   &:hover{
-    color: $color-6;
+    color: @color-9;
   }
 }
 /* ----- */
@@ -143,12 +148,12 @@ a.simple-link{
 /* Breadcrumbs */
 #breadcrumbs {
   text-align: center;
-  color: $color-8;
+  color: @color-4;
   font-size: 20px;
 
   a {
     text-decoration: none;
-    color: $color-8;
+    color: @color-4;
   }
 }
 /*----------*/
@@ -168,13 +173,13 @@ div.item_in_catalog {
   height: 200px;
   overflow: hidden;
   display: inline-block;
-  border: 1px solid $color-10;
+  border: 1px solid @color-2;
   margin: 0 5px;
   position: relative;
 
   h3{
     text-align: center;
-    background-color: $color-10;
+    background-color: @color-2;
     opacity: 0.8;
     position: absolute;
     top: 0;
@@ -185,7 +190,7 @@ div.item_in_catalog {
   }
 
   &:hover h3{
-    background-color: $color-6;
+    background-color: @color-9;
     color: white;
   }
 }
@@ -212,7 +217,7 @@ a.item_in_catalog {
 #item_image {
   float: left;
   width: 300px;
-  border-right: 1px solid $color-11;
+  border-right: 1px solid @color-5;
 }
 
 #item_description {
@@ -233,24 +238,24 @@ a.item_in_catalog {
   line-height: 1.5em;
 
   thead{
-    color: $color-11;
-    background-color: $color-3;
-    border: 1px solid $color-13;
+    color: @color-5;
+    background-color: @color-1;
+    border: 1px solid @color-3;
 
     td.selected{
-      background-color: $color-6;
+      background-color: @color-9;
       color: white;
     }
   }
 
   tbody{
     td, th{
-      border: 1px solid $color-13;
+      border: 1px solid @color-3;
       font-size: 14px;
     }
 
     td.selected{
-      background-color: $color-1;
+      background-color: @color-6;
     }
 
     tr:not(.add-to-cart-buttons):hover{
@@ -321,10 +326,10 @@ a.add-to-cart {
 
   li.item{
     float: left;
-    background-color: $color-5;
-    border-top: 1px solid $color-4;
-    border-left: 1px solid $color-4;
-    border-right: 1px solid $color-4;
+    background-color: @color-7;
+    border-top: 1px solid @color-10;
+    border-left: 1px solid @color-10;
+    border-right: 1px solid @color-10;
     width: 25%;
     box-sizing: border-box;
     text-align: center;
@@ -336,7 +341,7 @@ a.add-to-cart {
       display: block;
 
       &:hover{
-        background-color: $color-6;
+        background-color: @color-9;
         color: white;
       }
     }
@@ -347,7 +352,7 @@ a.add-to-cart {
 /* contacts page */
 #contacts{
   padding-left: 10px;
-  @include underlined('bottom');
+  .underlined_bottom();
 }
 
 #yamap{
@@ -358,7 +363,7 @@ div.prev_manager {
   width: 500px;
   height: 100px;
   overflow: hidden;
-  border: 1px solid $color-10;
+  border: 1px solid @color-2;
 }
 
 #managers_table {
@@ -366,7 +371,7 @@ div.prev_manager {
 }
 
 #time {
-  @include underlined('top');
+  .underlined_top();
   padding-left: 10px;
 }
 /* ------ */
@@ -408,15 +413,15 @@ table.cart-products {
 
   tbody{
     td, th{
-      border: 1px solid $color-13;
+      border: 1px solid @color-3;
       font-size: 14px;
     }
   }
 
   thead{
-    color: $color-11;
-    background-color: $color-3;
-    border: 1px solid $color-13;
+    color: @color-5;
+    background-color: @color-1;
+    border: 1px solid @color-3;
   }
 
   td, th{
@@ -429,7 +434,7 @@ table.cart-products {
   }
 
   td.selected{
-    background-color: $color-5;
+    background-color: @color-7;
   }
 
   tbody tr:not(.add-to-cart-buttons):hover{
@@ -444,7 +449,7 @@ form.checkout-info {
   input{
     font-size: 14pt;
 
-    .address-field{
+    &.address-field{
       width: 400px;
     }
   }
@@ -456,13 +461,13 @@ form.checkout-info {
 
 .error{
   input{
-    border: 1px solid $color-9;
+    border: 1px solid @color-11;
   }
 
   span.error-message{
     display: block;
     font-size: 8pt;
-    color: $color-9;
+    color: @color-11;
   }
 }
 
@@ -472,9 +477,9 @@ div.success-message {
 /* ---- */
 
 #slideshow{
-  background-color: $color-1;
+  background-color: @color-6;
   margin: 10px;
   padding: 20px;
-  border: 1px solid $color-11;
+  border: 1px solid @color-5;
   display: inline-block;
 }

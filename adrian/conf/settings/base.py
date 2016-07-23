@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'captcha',
     'phonenumber_field',
     'maintenancemode',
+    'constance',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -143,3 +144,7 @@ MAINTENANCE_MODE = False
 MAINTENANCE_IGNORE_URLS = (
     r'^/admin/.*',
 )
+
+CONSTANCE_CONFIG = {
+    'test': (0, 'test', str),
+}

@@ -15,9 +15,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    def items(self):
-        return self.item_set.all()
-
 
 class Item(models.Model):
     name = models.CharField(
@@ -32,9 +29,6 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
-
-    def modifications(self):
-        return self.modification_set.all()
 
     # Returns first related image
     def main_image(self):
@@ -56,15 +50,6 @@ class Modification(models.Model):
 
     def __str__(self):
         return self.name
-
-    # Returns characteristic of field_type for modification
-    def get_characteristic(self, field_type):
-        return Characteristic.objects.get(field_type=field_type, modification=self)
-
-
-    # Get characteristic value by field name
-    def get_characteristic_by_name(self, field_name):
-        return self.get_characteristic(FieldType.objects.get(name=field_name, category_id=self.item.category));
 
 
 # After creation Modification we must create characteristics and set null values
@@ -106,17 +91,6 @@ class FieldType(models.Model):
 
     def __str__(self):
         return self.category.name + ' - ' + self.title
-
-    # Return type of field (int, str, float, etc.)
-    def type(self):
-        typeName = self.typeName
-        if typeName == 'integer':
-            return int
-        elif typeName == 'float':
-            return float
-        elif typeName == 'string':
-            return str
-        return None
 
 
 # After FieldType creation we must create characteristic and set null value

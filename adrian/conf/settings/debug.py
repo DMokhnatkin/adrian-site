@@ -10,10 +10,10 @@ CACHES = {
 }
 
 MIDDLEWARE_CLASSES += [
-    #'conf.debug.QueryCountDebugMiddleware'
+    'conf.debug.QueryCountDebugMiddleware'
 ]
 
-"""
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -21,7 +21,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/adrian/log/debug.log',
+            'filename': os.path.join(BASE_DIR, 'conf/debug.log'),
         },
     },
     'loggers': {
@@ -31,7 +31,7 @@ LOGGING = {
             'propagate': True,
         },
     },
-}"""
+}
 
 CHECKOUT_EMAILS = ['paparome@ya.ru']
 
