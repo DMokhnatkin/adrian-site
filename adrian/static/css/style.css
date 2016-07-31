@@ -130,7 +130,7 @@ a.simple-link:hover {
 }
 div.item_in_catalog {
   width: 200px;
-  height: 200px;
+  height: 240px;
   overflow: hidden;
   display: inline-block;
   border: 1px solid #f1f1f1;
@@ -147,6 +147,16 @@ div.item_in_catalog h3 {
   width: 100%;
   font-size: 25px;
   line-height: 50px;
+}
+div.item_in_catalog div.price-range {
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  top: 200px;
+  width: 200px;
+}
+div.item_in_catalog div.price-range span {
+  white-space: nowrap;
 }
 div.item_in_catalog:hover h3 {
   background-color: #a18e45;

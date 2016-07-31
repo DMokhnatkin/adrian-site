@@ -1,7 +1,7 @@
 __author__ = 'Dmitriy'
 from django.core import validators
 from django.db import models
-from django.db.models import signals
+from django.db.models import signals, ExpressionWrapper, F
 from django.dispatch import receiver
 from easy_thumbnails.fields import ThumbnailerImageField
 
@@ -34,6 +34,36 @@ class Item(models.Model):
     def main_image(self):
         return self.itemimage_set.all()[0]
 
+    def get_price_range(self):
+        """
+        Get price range (f.e. 100 rub. - 300 rub.)
+        :return: {'low':Decimal, 'hight':Decimal, 'field_type':FieldType of price}
+        """
+        try:
+            price_field_type = FieldType.objects.get(
+                name='price',
+                category=self.category
+            )
+            res = Characteristic.objects\
+                .filter(
+                    field_type=price_field_type,
+                    modification__item=self
+                )\
+                .annotate(
+                    price_decimal=ExpressionWrapper(
+                        F('value'),
+                        output_field=models.DecimalField()
+                    )
+                )\
+                .aggregate(
+                    low=models.Min('price_decimal'),
+                    hight=models.Max('price_decimal')
+                )
+            res['field_type'] = price_field_type
+            return res
+        except models.ObjectDoesNotExist:
+            return None
+
 
 class ItemImage(models.Model):
     item = models.ForeignKey(Item)
@@ -50,6 +80,14 @@ class Modification(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_field_value(self, field_type):
+        try:
+            return Characteristic.objects.get(
+                field_type=field_type,
+                modification=self)
+        except models.ObjectDoesNotExist:
+            return None
 
 
 # After creation Modification we must create characteristics and set null values

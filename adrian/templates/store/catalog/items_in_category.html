@@ -53,6 +53,17 @@
                     <a href="{% url 'item_page' item.id %}" class="item_in_catalog"></a>
                     <h3>{{ item.name }}</h3>
                     <img src="{{ item.main_image.image|thumbnail_url:'item_in_catalog' }}" />
+                    <div class="price-range">
+                        {% with item.get_price_range as price_range %}
+                            {% load money_tags %}
+                            {% if price_range.low == price_range.hight %}
+                                <span>{{ price_range.low | print_price }} {{ price_range.field_type.unit }}</span>
+                            {% else %}
+                                <span>{{ price_range.low | print_price }} {{ price_range.field_type.unit }} -
+                                    {{ price_range.hight | print_price }} {{ price_range.field_type.unit }}</span>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
                 </div>
             {% empty %}
                 No items found

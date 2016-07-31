@@ -170,7 +170,7 @@ a.simple-link{
 /* Items in category */
 div.item_in_catalog {
   width: 200px;
-  height: 200px;
+  height: 240px;
   overflow: hidden;
   display: inline-block;
   border: 1px solid @color-2;
@@ -187,6 +187,21 @@ div.item_in_catalog {
     width: 100%;
     font-size: 25px;
     line-height: 50px;
+  }
+
+  img{
+  }
+
+  div.price-range{
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 200px;
+    width: 200px;
+
+    span{
+      white-space: nowrap;
+    }
   }
 
   &:hover h3{
