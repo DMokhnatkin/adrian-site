@@ -3,7 +3,9 @@ from django.core import validators
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
+from django.apps import apps
 from easy_thumbnails.fields import ThumbnailerImageField
+from rt_models.models import import_rt_models
 
 
 class Category(models.Model):
@@ -51,6 +53,17 @@ class Modification(models.Model):
     def __str__(self):
         return self.name
 
+    def get_field(self, field_type):
+        try:
+            field_model = field_type.get_field_model()
+            return field_model.objects.get(modification=self, field_type=field_type)
+        except:
+            return None
+
+    def set_field(self, field_type, val):
+        field_model = field_type.get_field_model()
+        field_model.objects.create(modification=self, field_type=field_type, field_val=val)
+
 
 # After creation Modification we must create characteristics and set null values
 @receiver(signals.post_save, sender=Modification)
@@ -88,6 +101,25 @@ class FieldType(models.Model):
     priority = models.IntegerField(
         default=0,
         verbose_name='Приоритет')
+    valueType = models.SmallIntegerField(
+        'Value type',
+        default=-1,
+        choices=(
+            (0, 'Decimal'),
+            (1, 'Integer'),
+        ),
+    )
+
+    def get_field_model(self):
+        """
+        Get field model class(DecimalField, IntegerField, ...)
+        :return:
+        """
+        storage_name =\
+            'DecimalField' if self.valueType == 0 else\
+            'IntegerField' if self.valueType == 1 else\
+            -1
+        return apps.get_model('catalog', storage_name)
 
     def __str__(self):
         return self.category.name + ' - ' + self.title
@@ -133,3 +165,22 @@ class Price(models.Model):
     label = models.CharField(
         max_length=50,
         default="")
+
+
+class BaseField(models.Model):
+    modification = models.ForeignKey(Modification)
+    field_type = models.ForeignKey(FieldType)
+
+    class Meta:
+        abstract = True
+
+
+class DecimalField(BaseField):
+    field_val = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class IntegerField(BaseField):
+    field_val = models.IntegerField()
+
+
+#import_rt_models()

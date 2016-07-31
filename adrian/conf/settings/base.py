@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'maintenancemode',
     'constance',
+    'rt_models'
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -29,8 +29,16 @@ class CharacteristicInLine(admin.StackedInline):
     def has_add_permission(self, request, obj=None):
         return False
 
+
+class FieldsInLine(admin.StackedInline):
+    model = models.BaseField
+
+    def __init__(self, *args, **kwargs):
+        super(FieldsInLine, self).__init__(*args, **kwargs)
+
+
 class ModificationAdmin(admin.ModelAdmin):
-    inlines = [CharacteristicInLine]
+    inlines = [FieldsInLine,]
     list_display = ('name', 'item')
     list_filter = ['item']
 

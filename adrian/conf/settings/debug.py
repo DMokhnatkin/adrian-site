@@ -38,7 +38,7 @@ CHECKOUT_EMAILS = ['paparome@ya.ru']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'adrian',
+        'NAME': 'adrian_temp',
         'USER': get_secret('DATABASE_USER'),
         'PASSWORD': get_secret('DATABASE_PASSWORD'),
         'HOST': '127.0.0.1',
