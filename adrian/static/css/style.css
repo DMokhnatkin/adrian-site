@@ -222,16 +222,17 @@ a.item_in_catalog {
   padding: 0 10px;
   text-align: center;
 }
-a.add-to-cart {
+#charact-table a.add-to-cart {
   overflow: hidden;
   width: 10em;
+  margin: 2px auto;
 }
-a.add-to-cart div .text {
+#charact-table a.add-to-cart div .text {
   text-align: center;
   width: 7em;
   float: left;
 }
-a.add-to-cart div .count {
+#charact-table a.add-to-cart div .count {
   width: 2em;
   float: right;
 }

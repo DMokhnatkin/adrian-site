@@ -55,6 +55,7 @@ class FieldTypeInLine(admin.StackedInline):
     model = models.FieldType
     ordering = ('priority',)
     extra = 0
+    exclude = ('typeName',)
 
 
 class CategoryAdmin(admin.ModelAdmin):

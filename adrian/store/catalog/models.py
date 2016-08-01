@@ -117,7 +117,7 @@ class FieldType(models.Model):
         ('integer', 'Int'),
         ('string', 'String'),
         ('float', 'Float')),
-        default=True)
+        null=True)
     unit = models.CharField(
         max_length=30,
         verbose_name='Единицы измерения',
