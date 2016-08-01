@@ -3,22 +3,6 @@ var cartReloadUrl = '/store/cart/cartPreview';
 var cartCheckoutUrl = '/store/cart/checkout';
 
 $(document).ready(function(){
-    // Add logic for add-to-cart buttons
-    $('a.add-to-cart').click(function () {
-        var prodId = this.id.substr(3);
-        setCountInCart(prodId, getCountInCart(prodId) + 1);
-        return false;
-    });
-
-    // Add logic for remove-from-cart buttons
-    $(document).on('cartPreviewLoaded', function () {
-        $('a.remove-from-cart').click(function () {
-            var prodId = this.id.substr(3);
-            removeFromCart(prodId);
-            return false;
-        });
-    });
-
     // Add logic for toolbox buttons
     $(document).on('cartPreviewLoaded', function () {
         $('a.clear-cart').click(function () {
@@ -90,4 +74,26 @@ function removeFromCart(productId) {
 function clear() {
     Cookies.remove(cartCookieName, null);
     $(document).trigger('cartChanged');
+}
+
+// Decrease product in cart count
+function decInCart(prodId, ct){
+    var curCt = getCountInCart(prodId);
+    if (curCt) {
+        if (curCt - ct <= 0)
+            removeFromCart(prodId);
+        else
+            setCountInCart(prodId, curCt - ct);
+    }
+}
+
+// Increase product in cart count
+function incInCart(prodId, ct){
+    var curCt = getCountInCart(prodId);
+    if (curCt) {
+        setCountInCart(prodId, curCt + ct);
+    }
+    else {
+        setCountInCart(prodId, ct);
+    }
 }

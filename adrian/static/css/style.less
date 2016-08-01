@@ -73,7 +73,7 @@ header {
     }
 
     ul{
-      margin-left: 10px;
+      margin: 0 10px;
       list-style: none;
     }
   }
@@ -323,8 +323,7 @@ a.item_in_catalog {
   }
 }
 
-#menu_catalog li:before,
-#cart-preview-list li:before {
+#menu_catalog li:before{
     content: "-";
 }
 /* ------- */
@@ -409,8 +408,38 @@ div.prev_manager {
 #cart-preview-list {
   font-size: 11pt;
 
+  li {
+    margin-top: 10px;
+
+    &:before{
+      content: "";
+    }
+  }
+
   .price{
     font-weight: bold;
+  }
+
+  table.cart-item{
+    border-collapse: collapse;
+    width: 100%;
+    border-width: 0 0 0 3px;
+    border-color: @color-10;
+    border-style: solid;
+
+    td{
+      border: 1px solid @color-5;
+      margin: 0;
+      padding: 0 5px;
+    }
+
+    thead{
+      color: @color-7;
+    }
+
+    td.toolbox{
+      width: 100px;
+    }
   }
 }
 /* ------ */

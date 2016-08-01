@@ -2,7 +2,7 @@
     products - cart.models.ProductsList
 {% endcomment %}
 
-<div class="large">
+<div class="large cart-preview">
     <div class="title">
         <h3>Корзина</h3>
     </div>
@@ -12,10 +12,31 @@
             {% for prod in products %}
                 <li>
                     {% load catalog_tags %}
-                    <a href="{% url_modification prod.modification %}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a>
-                    ({{ prod.count }})
-                    <p><span class="price">{{ prod.total_price|print_price  }}</span> <span class="price-unit">{{ prod.unit }}</span></p>
-                    <a href="#" id="rm-{{ prod.modification.id }}" class="remove-from-cart">удалить</a>
+                    <table class="cart-item">
+                        <tbody>
+                            <tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="{% url_modification prod.modification %}" class="simple-link normal-size">{{ prod.modification.item.name }} {{ prod.modification.name }}</a>
+                                    </td>
+                                </tr>
+                                <td>
+                                     <span class="price">{{ prod.total_price|print_price  }}</span> <span class="price-unit">{{ prod.unit }}</span>({{ prod.count }} шт.)
+                                </td>
+                                <td class="toolbox">
+                                    <a href="javascript:void(0)"
+                                       class="remove-from-cart"
+                                       onclick="removeFromCart({{ prod.modification.id }})">удалить</a>
+                                    <a href="javascript:void(0)"
+                                       class="dec-in-cart"
+                                       onclick="decInCart({{ prod.modification.id }}, 1)">-1</a>
+                                    <a href="javascript:void(0)"
+                                       class="inc-in-cart"
+                                       onclick="incInCart({{ prod.modification.id }}, 1)">+1</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </li>
             {% empty %}
                 Пусто

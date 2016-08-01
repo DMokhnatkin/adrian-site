@@ -86,7 +86,9 @@
                             <th></th>
                             {% for modif in table.modifications %}
                                 <td {% if modif.id|stringformat:'s' in selected_modifications %} class="selected" {% endif %}>
-                                    <a href="#" id="bt-{{ modif.id }}" class="simple-button add-to-cart">
+                                    <a href="javascript:void(0)"
+                                       class="simple-button add-to-cart"
+                                       onclick="incInCart({{ modif.id }}, 1)">
                                         <div class="text">
                                             <p>В корзину</p>
                                         </div>
